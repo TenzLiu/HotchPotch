@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <color name="colorApp">#63B8FF</color>
+    <color name="colorAppSelect">#6495ED</color>
+    <color name="colorBgNormal">#828282</color>
+    <color name="colorBgSelect">#6495ED</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGray">#828282</color>
+    <color name="colorLine">#20828282</color>
+
+
+    <color name="colorGuidEexperience">#90FFFFFF</color>
+
+</resources>

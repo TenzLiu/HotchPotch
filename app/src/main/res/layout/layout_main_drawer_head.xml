@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.tenz.hotchpotch.widget.image.MovingImageView
+        android:id="@+id/miv_drawer_head_bg"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@mipmap/menu_head_bg"
+        android:scaleType="centerCrop"
+        app:miv_load_on_create="false"
+        app:miv_max_relative_size="3.0"
+        app:miv_min_relative_offset="0.2"
+        app:miv_repetitions="-1"
+        app:miv_speed="50"
+        app:miv_start_delay="100"/>
+
+    <com.tenz.hotchpotch.widget.image.ShapeImageView
+        android:id="@+id/siv_head_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/tv_describe"
+        android:src="@mipmap/default_head_icon"
+        app:shape="circle"
+        app:border_size="2dp"
+        app:border_color="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/tv_describe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="16sp"
+        android:text="@string/menu_head_describe"
+        android:textColor="@color/colorWhite"/>
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/siv_head_icon"
+        android:layout_alignTop="@+id/siv_head_icon"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:text="@string/welcome"
+        android:textColor="@color/colorWhite"/>
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/siv_head_icon"
+        android:layout_below="@+id/tv_welcome"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:text="访客user"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>
