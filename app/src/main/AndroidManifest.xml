@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <!--指纹识别权限-->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
         android:name="com.tenz.hotchpotch.app.AppApplication"
@@ -32,6 +34,8 @@
         <activity android:name=".module.main.MainActivity"/>
         <activity android:name=".module.guide.GuideActivity"/>
         <activity android:name=".module.login.activity.LoginActivity"/>
+        <activity android:name=".module.login.activity.LoginByFingerPrintActivity"/>
+        <activity android:name=".module.main.SettingActivity"/>
 
     </application>
 

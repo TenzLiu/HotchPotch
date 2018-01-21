@@ -18,7 +18,9 @@ public class LoginPresenter extends LoginContract.LoginPresenter {
     @Override
     public void login(String account, String password) {
         if(mIModel !=null && mIView != null){
+            mIView.showLoadingDialog();
             String result = mIModel.login(account,password);
+            mIView.dismissLoadingDialog();
             if("success".equals(result)){
                 mIView.loginSuccess("user_123456");
             }else{

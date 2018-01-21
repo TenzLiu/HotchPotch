@@ -12,6 +12,7 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.main.MainActivity;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
+import com.tenz.hotchpotch.util.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class GuideActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        StatusBarUtil.setTransparent(this);
         mImageViewList = new ArrayList<>();
         initGuideImages();
         mGuideAdapter = new GuideAdapter(mContext,mImageViewList);

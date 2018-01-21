@@ -73,6 +73,17 @@
             android:text="@string/login"
             android:background="@drawable/selector_btn_app"/>
 
+        <Button
+            android:id="@+id/btn_login_by_finger_print"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/login_by_finger_print_guide"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:background="@null"/>
+
     </LinearLayout>
 
 </RelativeLayout>

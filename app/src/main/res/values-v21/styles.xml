@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--为了支持5.0的手机，需要建立一个文件夹values-v21，再新建style.xml文件-->
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+    </style>
+
+</resources>

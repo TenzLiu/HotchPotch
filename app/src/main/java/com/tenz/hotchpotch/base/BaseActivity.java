@@ -6,7 +6,10 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
@@ -14,6 +17,7 @@ import com.tenz.hotchpotch.base.IBaseView;
 import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
+import com.tenz.hotchpotch.util.StringUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.LoadingDialog;
 
@@ -53,7 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         //注册butterknife
         mUnbinder = ButterKnife.bind(this);
         //设置状态栏透明
-        StatusBarUtil.setTransparent(this);
+        StatusBarUtil.setBarColor(this, ResourceUtil.getColor(R.color.colorApp));
         //设置强制竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext = this;
@@ -83,6 +87,37 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
      * 子类可以复写此方法初始化子类数据
      */
     protected void initData() {
+    }
+
+    /**
+     * 设置toolbar
+     * @param toolbar
+     * @param title
+     */
+    protected void initTitleBar(Toolbar toolbar, String title){
+        initTitleBar(toolbar, title, "", null);
+    }
+
+    /**
+     * 设置toolbar
+     * @param toolbar
+     * @param title
+     * @param subTitle
+     */
+    protected void initTitleBar(Toolbar toolbar, String title, String subTitle,
+                                View.OnClickListener onSubTitleClickListener){
+        toolbar.setTitle(title);
+        //将Toolbar显示到界面
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//给左上角图标的左边加上一个返回的图标 。对应ActionBar.DISPLAY_HOME_AS_UP
+        getSupportActionBar().setDisplayShowHomeEnabled(true);//决定左上角的图标是否可以点击
+        toolbar.setNavigationIcon(ResourceUtil.getDrawable(R.mipmap.back_icon));//左上角的图标
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -174,5 +209,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     protected void onDestroy() {
         super.onDestroy();
         mUnbinder.unbind();
+        AppManager.getInstance().finishActivity(this);
     }
+
 }

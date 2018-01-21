@@ -14,5 +14,8 @@
     <string name="menu_head_describe">技术永无止境</string>
     <string name="welcome">欢迎</string>
     <string name="login">登录</string>
+    <string name="login_by_finger_print">指纹登陆</string>
+    <string name="login_by_finger_print_guide">指纹登陆 --></string>
+    <string name="put_finger_right">请将指纹放置识别区域</string>
 
 </resources>

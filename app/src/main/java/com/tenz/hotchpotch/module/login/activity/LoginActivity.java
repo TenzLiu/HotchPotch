@@ -15,6 +15,7 @@ import com.tenz.hotchpotch.module.login.model.LoginModel;
 import com.tenz.hotchpotch.module.login.presenter.LoginPresenter;
 import com.tenz.hotchpotch.module.main.MainActivity;
 import com.tenz.hotchpotch.util.SpUtil;
+import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.StringUtil;
 import com.tenz.hotchpotch.widget.edittext.ClearWriteEditText;
 
@@ -48,6 +49,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        StatusBarUtil.setTransparent(this);
         Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_login_bg);
         iv_login_bg.setAnimation(animation);
     }
@@ -57,7 +59,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
         super.initData();
     }
 
-    @OnClick({R.id.btn_login})
+    @OnClick({R.id.btn_login,R.id.btn_login_by_finger_print})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.btn_login:
@@ -68,6 +70,9 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
                 }else{
                     mPresenter.login(mAccount,mPassword);
                 }
+                break;
+            case R.id.btn_login_by_finger_print:
+                startActivity(LoginByFingerPrintActivity.class);
                 break;
         }
     }

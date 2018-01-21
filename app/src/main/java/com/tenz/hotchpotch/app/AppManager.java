@@ -87,6 +87,19 @@ public class AppManager {
     }
 
     /**
+     * 结束所有Activity除了指定的activity
+     */
+    public void finishAllActivityExcept(Class<?> cls){
+        for(int i=0; i<sActivityStack.size(); i++){
+            if(null != sActivityStack.get(i)){
+                if(!sActivityStack.get(i).getClass().equals(cls)){
+                    sActivityStack.get(i).finish();
+                }
+            }
+        }
+    }
+
+    /**
      * 结束所有Activity
      */
     public void finishAllActivity(){

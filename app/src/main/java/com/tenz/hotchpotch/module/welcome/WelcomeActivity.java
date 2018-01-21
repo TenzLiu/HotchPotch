@@ -57,6 +57,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        StatusBarUtil.setTransparent(this);
         requestPermissions();
         //去除状态栏高度
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -91,12 +92,12 @@ public class WelcomeActivity extends BaseActivity {
      * 初始化倒计时
      */
     private void innitCountDown() {
-        Observable.interval(1, TimeUnit.SECONDS)
+        Observable.interval(0,1, TimeUnit.SECONDS)
                 .take(3)//3s自动结束
                 .map(new Function<Long, Long>() {//转换
                     @Override
                     public Long apply(Long aLong) throws Exception {
-                        return mTime - (aLong+1);//aLong:0,1,2
+                        return mTime - aLong;
                     }
                 }).compose(RxHelper.<Long>rxSchedulerHelper())
                 .subscribe(new Observer<Long>() {
@@ -107,8 +108,7 @@ public class WelcomeActivity extends BaseActivity {
 
                     @Override
                     public void onNext(Long value) {
-                        if(!mIsCancel && value != 0)//点击跳过跟0s不显示
-                            tv_skip_time.setText(String.valueOf(value));
+                        tv_skip_time.setText(String.valueOf(value));
                     }
 
                     @Override

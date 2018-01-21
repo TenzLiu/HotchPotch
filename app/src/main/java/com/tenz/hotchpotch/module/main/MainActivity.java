@@ -22,6 +22,7 @@ import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
 import com.tenz.hotchpotch.util.BottomNavigationViewHelperUtil;
+import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.widget.image.MovingImageView;
 import com.tenz.hotchpotch.widget.image.MovingViewAnimator;
 import com.tenz.hotchpotch.widget.image.ShapeImageView;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        StatusBarUtil.setTransparent(this);
         //初始化Butterknife不能注解的控件
         miv_drawer_head_bg = nv_main.getHeaderView(0).findViewById(R.id.miv_drawer_head_bg);
         siv_head_icon = nv_main.getHeaderView(0).findViewById(R.id.siv_head_icon);
@@ -135,7 +137,7 @@ public class MainActivity extends BaseActivity {
 
                         break;
                     case R.id.item_setting:
-
+                        startActivity(SettingActivity.class);
                         break;
                 }
                 closeMenuDrawerLayout();
