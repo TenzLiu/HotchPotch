@@ -13,11 +13,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import com.tenz.hotchpotch.R;
-import com.tenz.hotchpotch.base.IBaseView;
-import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.LoadingDialog;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -30,7 +29,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Description: BaseFragment
  */
 
-public abstract class BaseFragment extends Fragment implements IBaseView {
+public abstract class BaseFragment extends RxFragment implements IBaseView {
 
     /**
      * 上下文对象

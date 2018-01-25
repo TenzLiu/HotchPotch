@@ -17,6 +17,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
+import com.tenz.hotchpotch.http.RetrofitFactory;
 import com.tenz.hotchpotch.module.home.fragment.HomeFragment;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;

@@ -6,7 +6,7 @@ import android.content.Context;
 /**
  * Author: TenzLiu
  * Date: 2018-01-18 17:56
- * Description: TODO
+ * Description: LoadingDialog
  */
 
 public class LoadingDialog extends ProgressDialog {

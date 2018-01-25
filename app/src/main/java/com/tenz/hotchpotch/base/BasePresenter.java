@@ -3,6 +3,11 @@ package com.tenz.hotchpotch.base;
 import android.support.annotation.NonNull;
 
 import com.tenz.hotchpotch.rx.RxManager;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Author: TenzLiu
@@ -12,9 +17,32 @@ import com.tenz.hotchpotch.rx.RxManager;
 
 public abstract class BasePresenter<M, V> {
 
-    public M mIModel;
-    public V mIView;
+    protected M mIModel;
+    protected V mIView;
     protected RxManager mRxManager = new RxManager();
+    private LifecycleProvider<ActivityEvent> provider;
+
+    /**
+     * 构造方法
+     * @param provider RxLifecycle管理生命周期
+     */
+    public BasePresenter(LifecycleProvider<ActivityEvent> provider) {
+        this.provider = provider;
+    }
+
+    /**
+     * 获取LifecycleProvider
+     * @return
+     */
+    public LifecycleProvider<ActivityEvent> getLifecycleProvider() {
+        return provider;
+    }
+
+    /**
+     * IView和IModel绑定完成立即执行
+     * 实现类实现绑定完成后的逻辑,例如数据初始化等,界面初始化, 更新等
+     */
+    public abstract void onStart();
 
     /**
      * 绑定IModel和IView的引用
@@ -37,16 +65,9 @@ public abstract class BasePresenter<M, V> {
      * 解绑IModel和IView
      */
     public void detachMV(){
-        mRxManager.unSubsribe();
         mIModel = null;
         mIView = null;
+        mRxManager = null;
     }
-
-    /**
-     * IView和IModel绑定完成立即执行
-     * 实现类实现绑定完成后的逻辑,例如数据初始化等,界面初始化, 更新等
-     */
-    public abstract void onStart();
-
 
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
+import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.main.MainActivity;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
@@ -88,7 +89,11 @@ public class GuideActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.tv_experience:
                 SpUtil.putBoolean(mContext, Constant.KEY_IS_GUIDE,true);
-                startActivity(MainActivity.class);
+                if(SpUtil.getBoolean(mContext,Constant.KEY_IS_LOGIN,false)){
+                    startActivity(MainActivity.class);
+                }else{
+                    startActivity(LoginActivity.class);
+                }
                 finish();
                 break;
         }

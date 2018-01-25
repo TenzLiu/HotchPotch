@@ -1,6 +1,13 @@
 package com.tenz.hotchpotch.module.login.model;
 
+import com.tenz.hotchpotch.api.LoginApi;
+import com.tenz.hotchpotch.http.BaseResponse;
+import com.tenz.hotchpotch.http.RetrofitFactory;
 import com.tenz.hotchpotch.module.login.contract.LoginContract;
+import com.tenz.hotchpotch.module.login.entity.Login;
+
+import io.reactivex.Observable;
+
 
 /**
  * Author: TenzLiu
@@ -15,12 +22,10 @@ public class LoginModel implements LoginContract.ILoginModel {
     }
 
     @Override
-    public String login(String account, String password) {
-        if("user".equals(account)&&"123456".equals(password)){
-            return "success";
-        }else{
-            return "账号或密码有误";
-        }
+    public Observable<BaseResponse<Login>> login(String account, String password) {
+
+        return RetrofitFactory.getInstance().createApi(LoginApi.class).login();
+
     }
 
 }

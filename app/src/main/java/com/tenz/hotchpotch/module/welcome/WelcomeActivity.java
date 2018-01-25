@@ -16,7 +16,7 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.guide.GuideActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.main.MainActivity;
-import com.tenz.hotchpotch.rx.RxHelper;
+import com.tenz.hotchpotch.rx.RxScheduler;
 import com.tenz.hotchpotch.util.DisplayUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
@@ -99,7 +99,7 @@ public class WelcomeActivity extends BaseActivity {
                     public Long apply(Long aLong) throws Exception {
                         return mTime - aLong;
                     }
-                }).compose(RxHelper.<Long>rxSchedulerHelper())
+                }).compose(RxScheduler.<Long>rxSchedulerTransform())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(Disposable d) {

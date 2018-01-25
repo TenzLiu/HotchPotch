@@ -3,6 +3,12 @@ package com.tenz.hotchpotch.module.login.contract;
 import com.tenz.hotchpotch.base.BasePresenter;
 import com.tenz.hotchpotch.base.IBaseModel;
 import com.tenz.hotchpotch.base.IBaseView;
+import com.tenz.hotchpotch.http.BaseResponse;
+import com.tenz.hotchpotch.module.login.entity.Login;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+
+import io.reactivex.Observable;
 
 /**
  * Author: TenzLiu
@@ -14,13 +20,22 @@ public interface LoginContract {
 
     abstract class LoginPresenter extends BasePresenter<ILoginModel,ILoginView>{
 
+        /**
+         * 构造方法
+         *
+         * @param provider RxLifecycle管理生命周期
+         */
+        public LoginPresenter(LifecycleProvider<ActivityEvent> provider) {
+            super(provider);
+        }
+
         public abstract void login(String account, String password);
 
     }
 
     interface ILoginModel extends IBaseModel{
 
-        String login(String account, String password);
+        Observable<BaseResponse<Login>> login(String account, String password);
 
     }
 

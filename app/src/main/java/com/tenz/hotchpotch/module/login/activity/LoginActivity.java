@@ -80,7 +80,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
     @NonNull
     @Override
     protected LoginPresenter initPresenter() {
-        return LoginPresenter.newInstance();
+        return new LoginPresenter(this);
     }
 
     @Override

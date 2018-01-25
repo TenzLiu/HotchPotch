@@ -2,7 +2,6 @@ package com.tenz.hotchpotch.module.login.activity;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
@@ -16,7 +15,7 @@ import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.helper.CryptoObjectHelper;
 import com.tenz.hotchpotch.module.main.MainActivity;
-import com.tenz.hotchpotch.rx.RxHelper;
+import com.tenz.hotchpotch.rx.RxScheduler;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
@@ -93,7 +92,7 @@ public class LoginByFingerPrintActivity extends BaseActivity {
                             public Long apply(Long aLong) throws Exception {
                                 return count - aLong;
                             }
-                        }).compose(RxHelper.<Long>rxSchedulerHelper())
+                        }).compose(RxScheduler.<Long>rxSchedulerTransform())
                         .subscribe(new Observer<Long>() {
                             @Override
                             public void onSubscribe(Disposable d) {

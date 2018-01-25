@@ -12,7 +12,7 @@ import com.tenz.hotchpotch.util.LogUtil;
  * User: Tenz Liu
  * Date: 2017-08-21
  * Time: 11-44
- * Description: TODO
+ * Description: AppApplication
  */
 
 public class AppApplication extends Application {
