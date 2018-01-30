@@ -23,6 +23,7 @@ import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
 import com.tenz.hotchpotch.util.BottomNavigationViewHelperUtil;
+import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.widget.image.MovingImageView;
 import com.tenz.hotchpotch.widget.image.MovingViewAnimator;
@@ -152,15 +153,19 @@ public class MainActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.item_home:
+                                StatusBarUtil.setTransparent(MainActivity.this);
                                 switchToFragment(0);
                                 break;
                             case R.id.item_news:
+                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(1);
                                 break;
                             case R.id.item_video:
+                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(2);
                                 break;
                             case R.id.item_photo:
+                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(3);
                                 break;
                         }

@@ -21,6 +21,9 @@ import retrofit2.HttpException;
 
 public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
 
+    public BaseObserver() {
+    }
+
     @Override
     public void onSubscribe(Disposable d) {
 

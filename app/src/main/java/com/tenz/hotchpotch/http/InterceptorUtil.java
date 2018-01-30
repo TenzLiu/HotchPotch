@@ -1,6 +1,7 @@
 package com.tenz.hotchpotch.http;
 
 import com.tenz.hotchpotch.util.AppUtil;
+import com.tenz.hotchpotch.util.JsonUtil;
 import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.NetWorkUtil;
 
@@ -64,7 +65,7 @@ public class InterceptorUtil {
                     requestMessage += "?\n" + buffer.readString(UTF8);
                 }
                 LogUtil.d(requestMessage);
-                LogUtil.d(request.method() + ' ' + request.url() + ' ' + responseBodyString);
+                LogUtil.d(responseBodyString);
                 return response.newBuilder().body(ResponseBody.create(responseBody.contentType(),
                         responseBodyString.getBytes())).build();
             }

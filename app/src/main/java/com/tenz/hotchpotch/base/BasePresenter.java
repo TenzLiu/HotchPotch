@@ -4,7 +4,9 @@ import android.support.annotation.NonNull;
 
 import com.tenz.hotchpotch.rx.RxManager;
 import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -20,22 +22,34 @@ public abstract class BasePresenter<M, V> {
     protected M mIModel;
     protected V mIView;
     protected RxManager mRxManager = new RxManager();
-    private LifecycleProvider<ActivityEvent> provider;
+    private LifecycleProvider<ActivityEvent> activityProvider;//activity
+    private LifecycleProvider<FragmentEvent> fragmentProvider;//fragment
 
     /**
      * 构造方法
-     * @param provider RxLifecycle管理生命周期
+     * @param activityProvider activity管理生命周期
+     * @param fragmentProvider fragment管理生命周期
      */
-    public BasePresenter(LifecycleProvider<ActivityEvent> provider) {
-        this.provider = provider;
+    public BasePresenter(LifecycleProvider<ActivityEvent> activityProvider,
+                         LifecycleProvider<FragmentEvent> fragmentProvider) {
+        this.activityProvider = activityProvider;
+        this.fragmentProvider = fragmentProvider;
     }
 
     /**
-     * 获取LifecycleProvider
+     * LifecycleProvider activity时调用
      * @return
      */
-    public LifecycleProvider<ActivityEvent> getLifecycleProvider() {
-        return provider;
+    public LifecycleProvider<ActivityEvent> getActivityProvider() {
+        return activityProvider;
+    }
+
+    /**
+     * LifecycleProvider fragment时调用
+     * @return
+     */
+    public LifecycleProvider<FragmentEvent> getFragmentProvider() {
+        return fragmentProvider;
     }
 
     /**

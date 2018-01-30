@@ -19,4 +19,6 @@ public class Constant {
     public static final String KEY_IS_GUIDE = "is_guide";//引导页
     public static final String KEY_IS_LOGIN = "is_login";//是否登录
 
+    public static final String SAVE_PATH_NAME = "hotchpotch";
+
 }

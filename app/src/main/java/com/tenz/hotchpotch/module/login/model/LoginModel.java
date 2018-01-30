@@ -24,7 +24,7 @@ public class LoginModel implements LoginContract.ILoginModel {
     @Override
     public Observable<BaseResponse<Login>> login(String account, String password) {
 
-        return RetrofitFactory.getInstance().createApi(LoginApi.class).login();
+        return RetrofitFactory.getInstance().createApi(LoginApi.HOST,LoginApi.class).login();
 
     }
 

@@ -16,10 +16,16 @@ import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.LoadingDialog;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Author: TenzLiu

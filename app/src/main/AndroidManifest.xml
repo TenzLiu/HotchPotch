@@ -36,6 +36,8 @@
         <activity android:name=".module.login.activity.LoginActivity"/>
         <activity android:name=".module.login.activity.LoginByFingerPrintActivity"/>
         <activity android:name=".module.main.SettingActivity"/>
+        <activity android:name=".module.news.activity.NewsDetailActivity"/>
+        <activity android:name=".module.photo.activity.PhotoDetailActivity"/>
 
     </application>
 

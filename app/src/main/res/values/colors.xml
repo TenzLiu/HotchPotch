@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#63B8FF</color>
-    <color name="colorPrimaryDark">#6495ED</color>
-    <color name="colorAccent">#828282</color>
+    <color name="colorPrimaryDark">#63B8FF</color>
+    <color name="colorAccent">#63B8FF</color>
     
     <color name="colorApp">#63B8FF</color>
     <color name="colorAppSelect">#6495ED</color>
     <color name="colorBgNormal">#828282</color>
+    <color name="colorTransParent">#00000000</color>
     <color name="colorBgSelect">#6495ED</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#828282</color>
+    <color name="colorBgPress">#20828282</color>
     <color name="colorLine">#20828282</color>
 
 

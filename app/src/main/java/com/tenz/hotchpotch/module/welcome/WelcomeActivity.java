@@ -108,7 +108,8 @@ public class WelcomeActivity extends BaseActivity {
 
                     @Override
                     public void onNext(Long value) {
-                        tv_skip_time.setText(String.valueOf(value));
+                        if(tv_skip_time!=null)
+                            tv_skip_time.setText(String.valueOf(value));
                     }
 
                     @Override

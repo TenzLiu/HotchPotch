@@ -14,6 +14,8 @@ import retrofit2.http.GET;
 
 public interface LoginApi {
 
+    public static final String HOST = "http://www.wanandroid.com/tools/mockapi/2164/";
+
     //自定义接口与返回数据模拟返回统一格式数据封装(http://www.wanandroid.com/tools/mockapi)
     @GET("hotchpotch_login")
     Observable<BaseResponse<Login>> login();

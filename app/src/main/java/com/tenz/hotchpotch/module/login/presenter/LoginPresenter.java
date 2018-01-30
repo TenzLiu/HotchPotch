@@ -8,6 +8,9 @@ import com.tenz.hotchpotch.rx.BaseObserver;
 import com.tenz.hotchpotch.rx.RxScheduler;
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * Author: TenzLiu
@@ -17,26 +20,34 @@ import com.trello.rxlifecycle2.android.ActivityEvent;
 
 public class LoginPresenter extends LoginContract.LoginPresenter {
 
+
     /**
      * 构造方法
      *
-     * @param provider RxLifecycle管理生命周期
+     * @param activityProvider RxLifecycle activity管理生命周期
+     * @param fragmentProvider
      */
-    public LoginPresenter(LifecycleProvider<ActivityEvent> provider) {
-        super(provider);
+    public LoginPresenter(LifecycleProvider<ActivityEvent> activityProvider,
+                          LifecycleProvider<FragmentEvent> fragmentProvider) {
+        super(activityProvider, fragmentProvider);
     }
 
     @Override
     public void login(String account, String password) {
         if(mIModel !=null && mIView != null){
-            mIView.showLoadingDialog();
             mIModel.login(account, password)
                     .compose(RxScheduler.<BaseResponse<Login>>rxSchedulerTransform())
-                    .compose(getLifecycleProvider().<BaseResponse<Login>>bindToLifecycle())
+                    .compose(getActivityProvider().<BaseResponse<Login>>bindToLifecycle())
                     .subscribe(new BaseObserver<Login>() {
+
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            super.onSubscribe(d);
+                            mIView.showLoadingDialog();
+                        }
+
                         @Override
                         protected void onSuccess(Login login) throws Exception {
-                            mIView.dismissLoadingDialog();
                             mIView.loginSuccess(login.getToken());
                         }
 
