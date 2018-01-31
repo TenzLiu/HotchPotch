@@ -21,7 +21,7 @@ import io.reactivex.disposables.Disposable;
 
 public class NewsPrensenter extends NewsContract.NewsPresenter {
 
-    private String category = "news_hot";
+    private String category = "news_tech";
     private int count = 20;
     private long min_behot_time;
 

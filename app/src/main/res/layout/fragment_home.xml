@@ -2,15 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.youth.banner.Banner
-        android:id="@+id/banner_home"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_home"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:title_height="25dp"
-        app:title_textsize="14sp"/>
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>

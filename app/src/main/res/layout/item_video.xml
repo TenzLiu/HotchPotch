@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="8dp">
+
+    <com.tenz.hotchpotch.widget.image.ShapeImageView
+        android:id="@+id/siv_image"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:src="@mipmap/default_head_icon"
+        app:shape="rect"
+        app:round_radius="5dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="14sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text=""/>
+</LinearLayout>

@@ -18,6 +18,7 @@ import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.http.RetrofitFactory;
+import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.fragment.HomeFragment;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
@@ -31,7 +32,7 @@ import com.tenz.hotchpotch.widget.image.ShapeImageView;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements HomeAdapter.Option {
 
     @BindView(R.id.dl_main)
     DrawerLayout dl_main;
@@ -285,6 +286,21 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         back();
+    }
+
+    @Override
+    public void toNews() {
+        bnv_content.setSelectedItemId(R.id.item_news);
+    }
+
+    @Override
+    public void toVideo() {
+        bnv_content.setSelectedItemId(R.id.item_video);
+    }
+
+    @Override
+    public void toPhoto() {
+        bnv_content.setSelectedItemId(R.id.item_photo);
     }
 
 }
