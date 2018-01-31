@@ -11,6 +11,7 @@
 
 
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png)
+![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png)
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png)
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png)
 
