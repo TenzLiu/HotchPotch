@@ -40,17 +40,20 @@ public class LoginPresenter extends LoginContract.LoginPresenter {
 
                         @Override
                         protected void onSuccess(Login login) throws Exception {
+                            mIView.dismissLoadingDialog();
                             mIView.loginSuccess(login.getToken());
                         }
 
                         @Override
                         protected void onCodeOverdue(String message) throws Exception {
+                            mIView.dismissLoadingDialog();
                             super.onCodeOverdue(message);
                             //可不重写，在BaseObserver做退出登录操作
                         }
 
                         @Override
                         protected void onError(String message) throws Exception {
+                            mIView.dismissLoadingDialog();
                             //可不重写，已把错误信息Toast给用户（需要做处理时重写）
                             super.onError(message);
                         }

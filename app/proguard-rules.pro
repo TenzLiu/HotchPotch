@@ -142,6 +142,16 @@
     public static <fields>;
 }
 
+#实体类不混淆，否则gson解析会出错
+-keep class com.tenz.hotchpotch.http.**{*;}
+-keep class com.tenz.hotchpotch.rx.BaseObserver
+-keep class com.tenz.hotchpotch.module.home.entity.**{*;}
+-keep class com.tenz.hotchpotch.module.login.entity.**{*;}
+-keep class com.tenz.hotchpotch.module.main.entity.**{*;}
+-keep class com.tenz.hotchpotch.module.news.entity.**{*;}
+-keep class com.tenz.hotchpotch.module.photo.entity.**{*;}
+-keep class com.tenz.hotchpotch.module.video.entity.**{*;}
+
 #避免混淆泛型 如果混淆报错建议关掉
 #-keepattributes Signature
 
@@ -153,3 +163,61 @@
 #    public static *** w(...);
 #    public static *** e(...);
 #}
+
+#为了在app混淆后也能接收到RxBus消息
+-keep class com.ttsea.jrxbus2**{*;}
+-keep class io.reactivex**{*;}
+
+-keepclassmembers class * {
+    public *** on*Event(***);
+}
+
+#butterknife
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+
+#retrofit2
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature
+-keepattributes Exceptions
+
+#gson
+-keep class com.google.gson.stream.** { *; }
+
+#rx
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+   long producerIndex;
+   long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+#okhttp3
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *;}
+-dontwarn okio.**
+
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+#不能混淆这个成员变量，否则会导致BottomNavigationMenuView ShiftingMode设置无效
+-keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
+    boolean mShiftingMode;
+}

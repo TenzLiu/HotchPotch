@@ -43,10 +43,9 @@ public class SettingActivity extends BaseActivity {
     public void onCLick(View view){
         switch (view.getId()){
             case R.id.btn_logout:
-                /*startActivity(LoginActivity.class);
+                startActivity(LoginActivity.class);
                 SpUtil.putBoolean(mContext, Constant.KEY_IS_LOGIN,false);
-                AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);*/
-                RxBus2.getInstance().post(2, "token过期，请重新登陆");
+                AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
                 break;
         }
     }
