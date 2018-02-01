@@ -21,4 +21,6 @@ public class Constant {
 
     public static final String SAVE_PATH_NAME = "hotchpotch";
 
+    public static final int CODE_CODEOVERDUE = 101010;
+
 }

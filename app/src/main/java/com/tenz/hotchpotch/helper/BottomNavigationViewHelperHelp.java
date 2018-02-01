@@ -1,4 +1,4 @@
-package com.tenz.hotchpotch.util;
+package com.tenz.hotchpotch.helper;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;
@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
  * Description: BottomNavigationView清楚动画效果
  */
 
-public class BottomNavigationViewHelperUtil {
+public class BottomNavigationViewHelperHelp {
 
     @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {

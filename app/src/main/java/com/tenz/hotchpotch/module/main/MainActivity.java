@@ -1,7 +1,9 @@
 package com.tenz.hotchpotch.module.main;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,18 +19,21 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
-import com.tenz.hotchpotch.http.RetrofitFactory;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.fragment.HomeFragment;
+import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
-import com.tenz.hotchpotch.util.BottomNavigationViewHelperUtil;
+import com.tenz.hotchpotch.helper.BottomNavigationViewHelperHelp;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
+import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.image.MovingImageView;
 import com.tenz.hotchpotch.widget.image.MovingViewAnimator;
 import com.tenz.hotchpotch.widget.image.ShapeImageView;
+import com.ttsea.jrxbus2.RxBus2;
+import com.ttsea.jrxbus2.Subscribe;
 
 import butterknife.BindView;
 
@@ -59,6 +64,12 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     private int currentFragmentPosition;//当前fragment位置
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        RxBus2.getInstance().register(this);
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
@@ -81,7 +92,7 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
         tv_welcome = nv_main.getHeaderView(0).findViewById(R.id.tv_welcome);
         tv_user_name = nv_main.getHeaderView(0).findViewById(R.id.tv_user_name);
         //去掉BottomNavigationView效果
-        BottomNavigationViewHelperUtil.disableShiftMode(bnv_content);
+        BottomNavigationViewHelperHelp.disableShiftMode(bnv_content);
         initListener();
         initFragment(savedInstanceState);
     }
@@ -279,7 +290,7 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
             showToast("再按一次退出应用");
             mExitTime = System.currentTimeMillis();
         }else{
-            AppManager.getInstance().exitApp(mContext,false);
+            AppManager.getInstance().finishActivity();
         }
     }
 
@@ -301,6 +312,23 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     @Override
     public void toPhoto() {
         bnv_content.setSelectedItemId(R.id.item_photo);
+    }
+
+    /**
+     * RxBus token过期接收通知
+     * @param msg
+     */
+    @Subscribe(code = Constant.CODE_CODEOVERDUE)
+    public void onCodeEvent(String msg){
+        ToastUtil.showToast(msg);
+        startActivity(LoginActivity.class);
+        AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxBus2.getInstance().unRegister(this);
     }
 
 }

@@ -69,6 +69,8 @@ public class LoginByFingerPrintActivity extends BaseActivity {
             @Override
             public void onAuthenticationError(int errMsgId, CharSequence errString) {
                 super.onAuthenticationError(errMsgId, errString);
+                if(tv_finger_print == null)
+                    return;
                 //但多次指纹密码验证错误后，进入此方法；并且，不能短时间内调用指纹验证
                 tv_finger_print.setText(errString);
             }
@@ -76,12 +78,16 @@ public class LoginByFingerPrintActivity extends BaseActivity {
             @Override
             public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
                 super.onAuthenticationHelp(helpMsgId, helpString);
+                if(tv_finger_print == null)
+                    return;
                 tv_finger_print.setText(helpString);
             }
 
             @Override
             public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
+                if(tv_finger_print == null)
+                    return;
                 tv_finger_print.setText("指纹识别登录成功,3s后自动登录");
                 //倒计时3秒登录
                 final int count = 3;
@@ -120,6 +126,8 @@ public class LoginByFingerPrintActivity extends BaseActivity {
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
+                if(tv_finger_print == null)
+                    return;
                 tv_finger_print.setText("指纹识别失败，请重新识别");
             }
         };
@@ -159,4 +167,8 @@ public class LoginByFingerPrintActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

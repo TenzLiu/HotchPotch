@@ -12,6 +12,7 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
+import com.ttsea.jrxbus2.RxBus2;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,9 +43,10 @@ public class SettingActivity extends BaseActivity {
     public void onCLick(View view){
         switch (view.getId()){
             case R.id.btn_logout:
-                startActivity(LoginActivity.class);
+                /*startActivity(LoginActivity.class);
                 SpUtil.putBoolean(mContext, Constant.KEY_IS_LOGIN,false);
-                AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
+                AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);*/
+                RxBus2.getInstance().post(2, "token过期，请重新登陆");
                 break;
         }
     }

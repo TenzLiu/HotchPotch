@@ -2,8 +2,10 @@ package com.tenz.hotchpotch.rx;
 
 import android.accounts.NetworkErrorException;
 
+import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.http.BaseResponse;
 import com.tenz.hotchpotch.util.ToastUtil;
+import com.ttsea.jrxbus2.RxBus2;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
@@ -87,6 +89,8 @@ public abstract class BaseObserver<T> implements Observer<BaseResponse<T>> {
      */
     protected void onCodeOverdue(String message) throws Exception{
         ToastUtil.showToast(message);
+        //RxBus发送通知
+        RxBus2.getInstance().post(Constant.CODE_CODEOVERDUE,message);
     }
 
     /**

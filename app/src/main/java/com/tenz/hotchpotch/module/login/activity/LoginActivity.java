@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.tenz.hotchpotch.R;
+import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseMvpActivity;
 import com.tenz.hotchpotch.module.login.contract.LoginContract;
@@ -88,6 +89,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
         showToast("登录成功");
         SpUtil.putBoolean(mContext, Constant.KEY_IS_LOGIN,true);
         startActivity(MainActivity.class);
+        AppManager.getInstance().finishActivity();
     }
 
     @Override
