@@ -15,6 +15,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.LoadingDialog;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
@@ -131,6 +132,12 @@ public abstract class BaseFragment extends RxFragment implements IBaseView {
                 (INPUT_METHOD_SERVICE);
         boolean hideSoftInputFromWindow = mInputMethodManager.hideSoftInputFromWindow(mActivity
                 .getCurrentFocus().getWindowToken(), 0);
+    }
+
+
+    @Override
+    public <T> LifecycleTransformer<T> bindToLife() {
+        return this.<T>bindToLifecycle();
     }
 
     /**

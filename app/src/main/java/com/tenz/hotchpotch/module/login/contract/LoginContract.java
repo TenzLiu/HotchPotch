@@ -21,18 +21,6 @@ public interface LoginContract {
 
     abstract class LoginPresenter extends BasePresenter<ILoginModel,ILoginView>{
 
-
-        /**
-         * 构造方法
-         *
-         * @param activityProvider activity管理生命周期
-         * @param fragmentProvider fragment管理生命周期
-         */
-        public LoginPresenter(LifecycleProvider<ActivityEvent> activityProvider,
-                              LifecycleProvider<FragmentEvent> fragmentProvider) {
-            super(activityProvider, fragmentProvider);
-        }
-
         public abstract void login(String account, String password);
 
     }

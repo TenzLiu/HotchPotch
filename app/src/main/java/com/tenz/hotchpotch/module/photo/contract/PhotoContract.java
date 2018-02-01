@@ -23,17 +23,6 @@ public interface PhotoContract {
 
     public abstract class PhotoPresenter extends BasePresenter<IPhotoModel,IPhotoView>{
 
-        /**
-         * 构造方法
-         *
-         * @param activityProvider activity管理生命周期
-         * @param fragmentProvider fragment管理生命周期
-         */
-        public PhotoPresenter(LifecycleProvider<ActivityEvent> activityProvider,
-                              LifecycleProvider<FragmentEvent> fragmentProvider) {
-            super(activityProvider, fragmentProvider);
-        }
-
         public abstract void getPhotos(boolean isRefresh);
 
     }

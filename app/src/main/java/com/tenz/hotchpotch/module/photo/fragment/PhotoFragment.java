@@ -104,7 +104,7 @@ public class PhotoFragment extends BaseMvpFragment<PhotoPresenter,PhotoModel>
     @NonNull
     @Override
     protected PhotoPresenter initPresenter() {
-        return new PhotoPresenter(null,this);
+        return PhotoPresenter.newInstance();
     }
 
     /**

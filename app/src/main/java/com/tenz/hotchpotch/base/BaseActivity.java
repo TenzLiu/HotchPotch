@@ -165,6 +165,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
 
     }
 
+    @Override
+    public <T> LifecycleTransformer<T> bindToLife() {
+        return this.<T>bindToLifecycle();
+    }
+
     /**
      * 跳转页面
      * @param cls

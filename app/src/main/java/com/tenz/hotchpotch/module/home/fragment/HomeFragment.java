@@ -1,6 +1,7 @@
 package com.tenz.hotchpotch.module.home.fragment;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.tenz.hotchpotch.module.photo.activity.PhotoDetailActivity;
 import com.tenz.hotchpotch.module.photo.entity.GetPhotos;
 import com.tenz.hotchpotch.module.video.entity.GetVideos;
 import com.tenz.hotchpotch.util.JsonUtil;
+import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 
 import java.util.ArrayList;
@@ -32,6 +34,8 @@ import butterknife.BindView;
 
 public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickListener {
 
+    @BindView(R.id.srl_container)
+    SwipeRefreshLayout srl_container;
     @BindView(R.id.rcv_home)
     RecyclerView rcv_home;
 
@@ -59,6 +63,7 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         super.initView(view, savedInstanceState);
+        srl_container.setColorSchemeColors(ResourceUtil.getColor(R.color.colorApp));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 6);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -73,6 +78,13 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
             }
         });
         rcv_home.setLayoutManager(gridLayoutManager);
+        srl_container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                srl_container.setRefreshing(true);
+                initData();
+            }
+        });
 
     }
 
@@ -97,6 +109,7 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
         mOption = (HomeAdapter.Option) mActivity;
         mHomeAdapter = new HomeAdapter(mContext,mHomeDataList,mOption,this);
         rcv_home.setAdapter(mHomeAdapter);
+        srl_container.setRefreshing(false);
     }
 
     /**

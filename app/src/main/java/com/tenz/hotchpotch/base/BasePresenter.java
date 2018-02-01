@@ -22,35 +22,6 @@ public abstract class BasePresenter<M, V> {
     protected M mIModel;
     protected V mIView;
     protected RxManager mRxManager = new RxManager();
-    private LifecycleProvider<ActivityEvent> activityProvider;//activity
-    private LifecycleProvider<FragmentEvent> fragmentProvider;//fragment
-
-    /**
-     * 构造方法
-     * @param activityProvider activity管理生命周期
-     * @param fragmentProvider fragment管理生命周期
-     */
-    public BasePresenter(LifecycleProvider<ActivityEvent> activityProvider,
-                         LifecycleProvider<FragmentEvent> fragmentProvider) {
-        this.activityProvider = activityProvider;
-        this.fragmentProvider = fragmentProvider;
-    }
-
-    /**
-     * LifecycleProvider activity时调用
-     * @return
-     */
-    public LifecycleProvider<ActivityEvent> getActivityProvider() {
-        return activityProvider;
-    }
-
-    /**
-     * LifecycleProvider fragment时调用
-     * @return
-     */
-    public LifecycleProvider<FragmentEvent> getFragmentProvider() {
-        return fragmentProvider;
-    }
 
     /**
      * IView和IModel绑定完成立即执行

@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.module.photo.entity.GetPhotos;
+import com.tenz.hotchpotch.util.GlideUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 
 import java.util.List;
@@ -34,11 +35,7 @@ public class PhotoAdapter extends BaseQuickAdapter<GetPhotos.Photo,BaseViewHolde
 
     @Override
     protected void convert(BaseViewHolder helper, GetPhotos.Photo photo) {
-        Glide.with(mContext)
-                .load(photo.getUrl())
-                .placeholder(R.mipmap.default_icon)
-                .centerCrop()
-                .into((ImageView) helper.getView(R.id.iv_image));
+        GlideUtil.loadImage(mContext,photo.getUrl(),(ImageView) helper.getView(R.id.iv_image));
     }
 
 }

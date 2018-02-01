@@ -105,6 +105,8 @@ public class NewsDetailActivity extends BaseActivity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
+            if(pb_news_detail == null)
+                return;
             //进度条
             if(newProgress < 100){
                 pb_news_detail.setProgress(newProgress);

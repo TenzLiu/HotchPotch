@@ -25,15 +25,8 @@ public class NewsPrensenter extends NewsContract.NewsPresenter {
     private int count = 20;
     private long min_behot_time;
 
-    /**
-     * 构造方法
-     *
-     * @param activityProvider activity管理生命周期
-     * @param fragmentProvider fragment管理生命周期
-     */
-    public NewsPrensenter(LifecycleProvider<ActivityEvent> activityProvider,
-                          LifecycleProvider<FragmentEvent> fragmentProvider) {
-        super(activityProvider, fragmentProvider);
+    public static NewsPrensenter newInstance(){
+        return new NewsPrensenter();
     }
 
     @Override
@@ -48,7 +41,7 @@ public class NewsPrensenter extends NewsContract.NewsPresenter {
                 min_behot_time = System.currentTimeMillis();
             mIModel.getNews(category,count,min_behot_time)
                     .compose(RxScheduler.<GetNews>rxSchedulerTransform())
-                    .compose(getFragmentProvider().<GetNews>bindToLifecycle())
+                    .compose(mIView.<GetNews>bindToLife())
                     .subscribe(new Observer<GetNews>() {
                         @Override
                         public void onSubscribe(Disposable d) {

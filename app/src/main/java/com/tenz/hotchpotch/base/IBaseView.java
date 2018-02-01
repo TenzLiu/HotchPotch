@@ -1,5 +1,7 @@
 package com.tenz.hotchpotch.base;
 
+import com.trello.rxlifecycle2.LifecycleTransformer;
+
 /**
  * Author: TenzLiu
  * Date: 2018-01-18 16:43
@@ -38,5 +40,13 @@ public interface IBaseView {
      * 回退
      */
     void back();
+
+    /**
+     * 绑定生命周期
+     *
+     * @param <T>
+     * @return
+     */
+    <T> LifecycleTransformer<T> bindToLife();
 
 }

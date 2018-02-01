@@ -22,15 +22,8 @@ public class PhotoPresenter extends PhotoContract.PhotoPresenter {
 
     private int page;
 
-    /**
-     * 构造方法
-     *
-     * @param activityProvider activity管理生命周期
-     * @param fragmentProvider fragment管理生命周期
-     */
-    public PhotoPresenter(LifecycleProvider<ActivityEvent> activityProvider,
-                          LifecycleProvider<FragmentEvent> fragmentProvider) {
-        super(activityProvider, fragmentProvider);
+    public static PhotoPresenter newInstance(){
+        return new PhotoPresenter();
     }
 
     @Override
@@ -40,7 +33,7 @@ public class PhotoPresenter extends PhotoContract.PhotoPresenter {
                 page = 0;
             mIModel.getPhotos(page)
                     .compose(RxScheduler.<GetPhotos>rxSchedulerTransform())
-                    .compose(getFragmentProvider().<GetPhotos>bindToLifecycle())
+                    .compose(mIView.<GetPhotos>bindToLife())
                     .subscribe(new Observer<GetPhotos>() {
                         @Override
                         public void onSubscribe(Disposable d) {

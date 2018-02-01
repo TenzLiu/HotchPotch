@@ -15,6 +15,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.rx.RxScheduler;
 import com.tenz.hotchpotch.util.FileUtil;
+import com.tenz.hotchpotch.util.GlideUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.StringUtil;
@@ -84,11 +85,7 @@ public class PhotoDetailActivity extends BaseActivity {
         if(bundle != null){
             pic_url = bundle.getString("pic_url");
         }
-        Glide.with(mContext)
-                .load(pic_url)
-                .placeholder(R.mipmap.default_icon)
-                .fitCenter()
-                .into(pv_image);
+        GlideUtil.loadImage(mContext,pic_url,pv_image);
     }
 
     /**

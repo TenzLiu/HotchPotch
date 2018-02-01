@@ -20,16 +20,8 @@ import io.reactivex.disposables.Disposable;
 
 public class LoginPresenter extends LoginContract.LoginPresenter {
 
-
-    /**
-     * 构造方法
-     *
-     * @param activityProvider RxLifecycle activity管理生命周期
-     * @param fragmentProvider
-     */
-    public LoginPresenter(LifecycleProvider<ActivityEvent> activityProvider,
-                          LifecycleProvider<FragmentEvent> fragmentProvider) {
-        super(activityProvider, fragmentProvider);
+    public static LoginPresenter newInstance(){
+        return new LoginPresenter();
     }
 
     @Override
@@ -37,7 +29,7 @@ public class LoginPresenter extends LoginContract.LoginPresenter {
         if(mIModel !=null && mIView != null){
             mIModel.login(account, password)
                     .compose(RxScheduler.<BaseResponse<Login>>rxSchedulerTransform())
-                    .compose(getActivityProvider().<BaseResponse<Login>>bindToLifecycle())
+                    .compose(mIView.<BaseResponse<Login>>bindToLife())
                     .subscribe(new BaseObserver<Login>() {
 
                         @Override

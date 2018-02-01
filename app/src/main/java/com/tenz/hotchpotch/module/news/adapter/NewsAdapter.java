@@ -8,6 +8,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.module.news.entity.GetNews;
+import com.tenz.hotchpotch.util.DateUtil;
+import com.tenz.hotchpotch.util.GlideUtil;
 import com.tenz.hotchpotch.util.JsonUtil;
 
 import java.util.List;
@@ -36,13 +38,10 @@ public class NewsAdapter extends BaseQuickAdapter<GetNews.DataBean,BaseViewHolde
     protected void convert(BaseViewHolder helper, GetNews.DataBean dataBean) {
         GetNews.News news = JsonUtil.fromJsonToObject(dataBean.getContent(), GetNews.News.class);
         helper.setText(R.id.tv_title,news.getTitle());
-        helper.setText(R.id.tv_time,""+news.getPublish_time());
+        helper.setText(R.id.tv_time, DateUtil.getDay(news.getPublish_time()));
         helper.setText(R.id.tv_author,news.getUser_info()!=null?news.getUser_info().getName():"");
-        Glide.with(mContext)
-                .load(news.getUser_info()!=null?news.getUser_info().getAvatar_url():"")
-                .placeholder(R.mipmap.default_icon)
-                .centerCrop()
-                .into((ImageView) helper.getView(R.id.iv_image));
+        GlideUtil.loadImage(mContext,news.getUser_info()!=null?news.getUser_info().getAvatar_url():"",
+                (ImageView) helper.getView(R.id.iv_image));
     }
 
 }

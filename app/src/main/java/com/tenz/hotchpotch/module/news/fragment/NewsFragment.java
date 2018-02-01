@@ -99,7 +99,7 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
     @NonNull
     @Override
     protected NewsPrensenter initPresenter() {
-        return new NewsPrensenter(null,this);
+        return NewsPrensenter.newInstance();
     }
 
     @Override

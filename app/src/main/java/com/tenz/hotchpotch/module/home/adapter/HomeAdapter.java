@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.module.home.entity.GetBanner;
 import com.tenz.hotchpotch.module.home.entity.HomeData;
+import com.tenz.hotchpotch.util.DateUtil;
+import com.tenz.hotchpotch.util.GlideUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.banner.BannerImageLoader;
 import com.tenz.hotchpotch.widget.image.ShapeImageView;
@@ -157,8 +159,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             View view = View.inflate(mContext,R.layout.item_home_module_item,null);
             ShapeImageView siv_image = view.findViewById(R.id.siv_image);
             TextView tv_name = view.findViewById(R.id.tv_name);
-            Glide.with(mContext).load(mHomeDataList.get(position).getModuleList().get(i).getLogo())
-                    .placeholder(R.mipmap.default_icon).centerCrop().into(siv_image);
+            GlideUtil.loadImage(mContext,mHomeDataList.get(position).getModuleList().get(i).getLogo(),siv_image);
             tv_name.setText(mHomeDataList.get(position).getModuleList().get(i).getName());
             final int index = i;
             view.setOnClickListener(new View.OnClickListener() {
@@ -194,13 +195,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      */
     private void setNewContentData(NewsContentViewHolder newsContentViewHolder, final int position) {
         newsContentViewHolder.tv_title.setText(mHomeDataList.get(position).getNews().getTitle());
-        newsContentViewHolder.tv_time.setText(""+mHomeDataList.get(position).getNews().getPublish_time());
+        newsContentViewHolder.tv_time.setText(DateUtil.getDay(mHomeDataList.get(position).getNews().getPublish_time()));
         newsContentViewHolder.tv_author.setText(mHomeDataList.get(position).getNews().getUser_info().getName());
-        Glide.with(mContext)
-                .load(mHomeDataList.get(position).getNews().getUser_info().getAvatar_url())
-                .placeholder(R.mipmap.default_icon)
-                .centerCrop()
-                .into(newsContentViewHolder.iv_image);
+        GlideUtil.loadImage(mContext,mHomeDataList.get(position).getNews().getUser_info().getAvatar_url(),newsContentViewHolder.iv_image);
         newsContentViewHolder.cv_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,8 +227,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * @param position
      */
     private void setVideoContentData(VideoContentViewHolder videoContentViewHolder, final int position) {
-        Glide.with(mContext).load(mHomeDataList.get(position).getVideo().getVideoUrl())
-                .placeholder(R.mipmap.default_icon).centerCrop().into(videoContentViewHolder.siv_image);
+        GlideUtil.loadImage(mContext,mHomeDataList.get(position).getVideo().getVideoUrl(),
+                videoContentViewHolder.siv_image);
         videoContentViewHolder.tv_name.setText(mHomeDataList.get(position).getVideo().getTitle());
         videoContentViewHolder.ll_container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,11 +259,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * @param position
      */
     private void setPhotoContentData(PhotoContentViewHolder photoContentViewHolder, final int position) {
-        Glide.with(mContext)
-                .load(mHomeDataList.get(position).getPhoto().getUrl())
-                .placeholder(R.mipmap.default_icon)
-                .centerCrop()
-                .into(photoContentViewHolder.iv_image);
+        GlideUtil.loadImage(mContext,mHomeDataList.get(position).getPhoto().getUrl(),
+                photoContentViewHolder.iv_image);
         photoContentViewHolder.cv_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
