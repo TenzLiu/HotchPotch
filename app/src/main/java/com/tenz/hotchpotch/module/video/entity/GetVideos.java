@@ -50,6 +50,7 @@ public class GetVideos {
         public void setCover(String cover) {
             this.cover = cover;
         }
+
     }
 
 }

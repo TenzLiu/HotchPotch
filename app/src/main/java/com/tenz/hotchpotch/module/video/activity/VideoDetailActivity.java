@@ -19,6 +19,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.video.entity.GetVideos;
 import com.tenz.hotchpotch.util.GlideUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 
 import butterknife.BindView;
@@ -49,19 +50,13 @@ public class VideoDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
-        super.initView(savedInstanceState);
-        initTitleBar(mToolbar, video.getTitle());
-    }
-
-    @Override
     protected void initData() {
         super.initData();
         Bundle bundle = getIntent().getExtras();
         if(null != bundle){
             video = (GetVideos.Video) bundle.getSerializable("video");
         }
-
+        initTitleBar(mToolbar, video.getTitle());
         //断网自动重新链接，url前接上ijkhttphook:
 
         //detailPlayer.setUp(url, false, null, "测试视频");

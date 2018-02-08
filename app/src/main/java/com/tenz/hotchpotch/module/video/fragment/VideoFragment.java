@@ -19,6 +19,7 @@ import com.tenz.hotchpotch.module.video.contract.VideoContract;
 import com.tenz.hotchpotch.module.video.entity.GetVideos;
 import com.tenz.hotchpotch.module.video.model.VideoModel;
 import com.tenz.hotchpotch.module.video.presenter.VideoPresenter;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 
 import java.util.ArrayList;
