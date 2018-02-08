@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseActivity;
@@ -85,7 +87,11 @@ public class PhotoDetailActivity extends BaseActivity {
         if(bundle != null){
             pic_url = bundle.getString("pic_url");
         }
-        GlideUtil.loadImage(mContext,pic_url,pv_image);
+        RequestOptions requestOptions = new RequestOptions()
+                .centerInside()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.mipmap.default_icon);
+        GlideUtil.loadImage(mContext,pic_url,requestOptions,pv_image);
     }
 
     /**

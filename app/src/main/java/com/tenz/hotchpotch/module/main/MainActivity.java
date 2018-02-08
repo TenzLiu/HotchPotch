@@ -1,7 +1,6 @@
 package com.tenz.hotchpotch.module.main;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -19,13 +18,13 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
+import com.tenz.hotchpotch.helper.BottomNavigationViewHelperHelp;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.fragment.HomeFragment;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
-import com.tenz.hotchpotch.helper.BottomNavigationViewHelperHelp;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
@@ -169,21 +168,31 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
                                 switchToFragment(0);
                                 break;
                             case R.id.item_news:
-                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
+                                StatusBarUtil.setBarColor(MainActivity.this,
+                                        ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(1);
                                 break;
                             case R.id.item_video:
-                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
+                                StatusBarUtil.setBarColor(MainActivity.this,
+                                        ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(2);
                                 break;
                             case R.id.item_photo:
-                                StatusBarUtil.setBarColor(MainActivity.this, ResourceUtil.getColor(R.color.colorApp));
+                                StatusBarUtil.setBarColor(MainActivity.this,
+                                        ResourceUtil.getColor(R.color.colorApp));
                                 switchToFragment(3);
                                 break;
                         }
                         return true;
                     }
                 });
+        //头像
+        siv_head_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     /**

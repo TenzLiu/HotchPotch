@@ -3,13 +3,11 @@ package com.tenz.hotchpotch.module.photo.adapter;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.module.photo.entity.GetPhotos;
 import com.tenz.hotchpotch.util.GlideUtil;
-import com.tenz.hotchpotch.util.ResourceUtil;
 
 import java.util.List;
 

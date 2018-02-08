@@ -29,7 +29,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Description: BaseFragment,并处理Fragment懒加载
  */
 
-public abstract class BaseLazyFragment extends Fragment implements IBaseView {
+public abstract class BaseLazyFragment extends Fragment implements IBaseView{
 
     /**
      * Fragment的View加载完毕的标记(懒加载)

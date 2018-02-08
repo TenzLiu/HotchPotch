@@ -16,6 +16,7 @@ import com.tenz.hotchpotch.module.news.activity.NewsDetailActivity;
 import com.tenz.hotchpotch.module.news.entity.GetNews;
 import com.tenz.hotchpotch.module.photo.activity.PhotoDetailActivity;
 import com.tenz.hotchpotch.module.photo.entity.GetPhotos;
+import com.tenz.hotchpotch.module.video.activity.VideoDetailActivity;
 import com.tenz.hotchpotch.module.video.entity.GetVideos;
 import com.tenz.hotchpotch.util.JsonUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
@@ -220,23 +221,29 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
     private void initVideoData() {
         mVideoList = new ArrayList<>();
         GetVideos.Video video1 = new GetVideos.Video();
-        video1.setTitle("阿凡达2");
-        video1.setVideoUrl("");
+        video1.setTitle("杨千嬅翻唱陈奕迅《明年今日》Live，多了分坚强决绝，另一种好听");
+        video1.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/VCZxc9703/SD/VCZxc9703-mobile.mp4");
+        video1.setCover("http://vimg2.ws.126.net/image/snapshot/2018/2/A/J/VA9228AAJ.jpg");
         GetVideos.Video video2 = new GetVideos.Video();
-        video2.setTitle("芳华");
-        video2.setVideoUrl("");
+        video2.setTitle("中国家庭负债占GDP低，中国楼市也不一定安全！");
+        video2.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/cCrlT9670/SD/cCrlT9670-mobile.mp4");
+        video2.setCover("http://vimg2.ws.126.net/image/snapshot/2018/2/F/5/VG92270F5.jpg");
         GetVideos.Video video3 = new GetVideos.Video();
-        video3.setTitle("钢铁侠4");
-        video3.setVideoUrl("");
+        video3.setTitle("这项公路上的专利，将会拯救百万司机的性命，国内已经开始使用");
+        video3.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/guaLJ9499/HD/guaLJ9499-mobile.mp4");
+        video3.setCover("http://vimg3.ws.126.net/image/snapshot/2018/2/6/E/VS9225G6E.jpg");
         GetVideos.Video video4 = new GetVideos.Video();
-        video4.setTitle("重生之门");
-        video4.setVideoUrl("");
+        video4.setTitle("朴树《好好地》传达了一种释放自我，追求自由生活的态度");
+        video4.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/IBaHm9625/SD/IBaHm9625-mobile.mp4");
+        video4.setCover("http://vimg2.ws.126.net/image/snapshot/2018/2/B/L/VA92256BL.jpg");
         GetVideos.Video video5 = new GetVideos.Video();
-        video5.setTitle("电锯惊魂8");
-        video5.setVideoUrl("");
+        video5.setTitle("李志《天空之城》 或许每个人心中都有一座可望而不可即的天空之城");
+        video5.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/uFpMS9559/SD/uFpMS9559-mobile.mp4");
+        video5.setCover("http://vimg1.ws.126.net/image/snapshot/2018/2/7/G/VA922427G.jpg");
         GetVideos.Video video6 = new GetVideos.Video();
-        video6.setTitle("大杂烩");
-        video6.setVideoUrl("");
+        video6.setTitle("你买的保险真的能赔钱？这几项不看清，就算买了也白买！");
+        video6.setMp4_url("http://flv3.bn.netease.com/videolib3/1802/06/CfRQI9007/SD/CfRQI9007-mobile.mp4");
+        video6.setCover("http://vimg3.ws.126.net/image/snapshot/2018/2/8/H/VW9221B8H.jpg");
         mVideoList.add(video1);
         mVideoList.add(video2);
         mVideoList.add(video3);
@@ -330,7 +337,9 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
             bundle.putString("htmlData","");
             startActivity(NewsDetailActivity.class,bundle);
         }else if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_VIDEO_CONTENT){
-
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("video",mHomeDataList.get(position).getVideo());
+            startActivity(VideoDetailActivity.class,bundle);
         }else if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_PHOTO_CONTENT){
             Bundle bundle = new Bundle();
             bundle.putString("pic_url",mHomeDataList.get(position).getPhoto().getUrl());

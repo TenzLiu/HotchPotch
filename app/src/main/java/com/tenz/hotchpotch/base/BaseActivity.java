@@ -21,11 +21,6 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Author: TenzLiu
@@ -54,6 +49,10 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         init(savedInstanceState);
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     private void init(Bundle savedInstanceState){
         //加载布局
         setContentView(getLayoutId());

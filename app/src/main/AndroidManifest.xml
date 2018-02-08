@@ -38,6 +38,8 @@
         <activity android:name=".module.main.SettingActivity"/>
         <activity android:name=".module.news.activity.NewsDetailActivity"/>
         <activity android:name=".module.photo.activity.PhotoDetailActivity"/>
+        <activity android:name=".module.video.activity.VideoDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
 
     </application>
 

@@ -10,14 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.module.home.entity.GetBanner;
 import com.tenz.hotchpotch.module.home.entity.HomeData;
 import com.tenz.hotchpotch.util.DateUtil;
 import com.tenz.hotchpotch.util.GlideUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
-import com.tenz.hotchpotch.widget.banner.BannerImageLoader;
+import com.tenz.hotchpotch.helper.BannerImageLoader;
 import com.tenz.hotchpotch.widget.image.ShapeImageView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -227,7 +226,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * @param position
      */
     private void setVideoContentData(VideoContentViewHolder videoContentViewHolder, final int position) {
-        GlideUtil.loadImage(mContext,mHomeDataList.get(position).getVideo().getVideoUrl(),
+        GlideUtil.loadImage(mContext,mHomeDataList.get(position).getVideo().getCover(),
                 videoContentViewHolder.siv_image);
         videoContentViewHolder.tv_name.setText(mHomeDataList.get(position).getVideo().getTitle());
         videoContentViewHolder.ll_container.setOnClickListener(new View.OnClickListener() {
