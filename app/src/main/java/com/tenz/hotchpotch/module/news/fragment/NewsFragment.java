@@ -19,6 +19,7 @@ import com.tenz.hotchpotch.module.news.entity.GetNews;
 import com.tenz.hotchpotch.module.news.model.NewsModel;
 import com.tenz.hotchpotch.module.news.presenter.NewsPrensenter;
 import com.tenz.hotchpotch.util.JsonUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 
 import java.util.ArrayList;
@@ -103,12 +104,17 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
     }
 
     @Override
-    public void showNews(GetNews getNews) {
+    public void showNews(boolean isRefresh, boolean isNoMoreData, GetNews getNews) {
         srl_container.setRefreshing(false);
-        if(getNews.getData().size()==0){
-            //initAdapter(getNews.getData());
+        if(isRefresh){
+            newsAdapter.setNewData(getNews.getData());
         }else{
             newsAdapter.addData(getNews.getData());
+        }
+        if(isNoMoreData){
+            newsAdapter.loadMoreEnd();
+        }else{
+            newsAdapter.loadMoreComplete();
         }
     }
 
@@ -135,7 +141,6 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
 
     @Override
     public void onLoadMoreRequested() {
-        newsAdapter.loadMoreComplete();
         mPresenter.getNrews(false);
     }
 

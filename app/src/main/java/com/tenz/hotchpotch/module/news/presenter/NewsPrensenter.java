@@ -53,7 +53,7 @@ public class NewsPrensenter extends NewsContract.NewsPresenter {
                             min_behot_time = getNews.getData().size()>0?
                                     JsonUtil.fromJsonToObject(getNews.getData().get(0).getContent(), GetNews.News.class).getBehot_time()
                                     :System.currentTimeMillis();
-                            mIView.showNews(getNews);
+                            mIView.showNews(isRefresh, getNews.getData().size()<count, getNews);
                         }
 
                         @Override

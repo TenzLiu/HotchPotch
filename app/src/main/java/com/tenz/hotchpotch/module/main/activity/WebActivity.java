@@ -118,6 +118,9 @@ public class WebActivity extends BaseActivity {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
+            if(null == mToolbar){
+                return;
+            }
             //标题
             initTitleBar(mToolbar, title);
         }

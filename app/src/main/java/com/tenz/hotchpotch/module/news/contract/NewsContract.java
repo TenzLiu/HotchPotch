@@ -33,7 +33,7 @@ public interface NewsContract {
 
     interface INewsView extends IBaseView{
 
-        void showNews(GetNews getNews);
+        void showNews(boolean isRefresh, boolean isNoMoreData, GetNews getNews);
 
     }
 

@@ -125,17 +125,21 @@ public class VideoFragment extends BaseMvpFragment<VideoPresenter,VideoModel>
 
     @Override
     public void onLoadMoreRequested() {
-        mVideoAdapter.loadMoreComplete();
         mPresenter.getVideos(false);
     }
 
     @Override
-    public void showVideos(List<GetVideos.Video> videoList) {
+    public void showVideos(boolean isRefresh, boolean isNoMoreData, List<GetVideos.Video> videoList) {
         srl_video.setRefreshing(false);
-        if(videoList.size() == 0){
-
+        if(isRefresh){
+            mVideoAdapter.setNewData(videoList);
         }else{
             mVideoAdapter.addData(videoList);
+        }
+        if(isNoMoreData){
+            mVideoAdapter.loadMoreEnd();
+        }else{
+            mVideoAdapter.loadMoreComplete();
         }
     }
 

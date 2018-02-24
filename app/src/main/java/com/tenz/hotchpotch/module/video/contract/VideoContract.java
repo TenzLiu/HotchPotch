@@ -31,7 +31,7 @@ public interface VideoContract {
 
     public interface IVideoView extends IBaseView{
 
-        void showVideos(List<GetVideos.Video> videoList);
+        void showVideos(boolean isRefresh, boolean isNoMoreData, List<GetVideos.Video> videoList);
 
     }
 

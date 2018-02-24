@@ -127,17 +127,21 @@ public class PhotoFragment extends BaseMvpFragment<PhotoPresenter,PhotoModel>
 
     @Override
     public void onLoadMoreRequested() {
-        mPhotoAdapter.loadMoreComplete();
         mPresenter.getPhotos(false);
     }
 
     @Override
-    public void showPhotos(List<GetPhotos.Photo> photoList) {
+    public void showPhotos(boolean isRefresh, boolean isNoMoreData, List<GetPhotos.Photo> photoList) {
         srl_photo.setRefreshing(false);
-        if(photoList.size() == 0){
-
+        if(isRefresh){
+            mPhotoAdapter.setNewData(photoList);
         }else{
             mPhotoAdapter.addData(photoList);
+        }
+        if(isNoMoreData){
+            mPhotoAdapter.loadMoreEnd();
+        }else{
+            mPhotoAdapter.loadMoreComplete();
         }
     }
 

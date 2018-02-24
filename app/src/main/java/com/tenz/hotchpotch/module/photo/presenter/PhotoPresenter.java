@@ -43,7 +43,7 @@ public class PhotoPresenter extends PhotoContract.PhotoPresenter {
                         @Override
                         public void onNext(GetPhotos getPhotos) {
                             page ++;
-                            mIView.showPhotos(getPhotos.getResults());
+                            mIView.showPhotos(isRefresh, getPhotos.getResults().size()<20, getPhotos.getResults());
                         }
 
                         @Override

@@ -40,7 +40,7 @@ public class VideoPresenter extends VideoContract.VideoPresenter {
 
                         @Override
                         public void onNext(GetVideos value) {
-                            mIView.showVideos(value.getV9LG4B3A0());
+                            mIView.showVideos(isRefresh,value.getV9LG4B3A0().size()<15, value.getV9LG4B3A0());
                             page ++;
                         }
 

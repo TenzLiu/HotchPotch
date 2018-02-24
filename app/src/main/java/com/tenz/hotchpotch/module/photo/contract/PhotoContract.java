@@ -35,7 +35,7 @@ public interface PhotoContract {
 
     public interface IPhotoView extends IBaseView{
 
-        void showPhotos(List<GetPhotos.Photo> photoList);
+        void showPhotos(boolean isRefresh, boolean isNoMoreData, List<GetPhotos.Photo> photoList);
 
     }
 
