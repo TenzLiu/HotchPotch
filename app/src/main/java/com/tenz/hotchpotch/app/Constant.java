@@ -23,4 +23,6 @@ public class Constant {
 
     public static final int CODE_CODEOVERDUE = 101010;
 
+    public static final String KEY_USER_HEAD = "user_head";
+    public static final int CODE_QRCODE_RESULT = 101011;
 }

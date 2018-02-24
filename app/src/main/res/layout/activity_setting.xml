@@ -8,11 +8,79 @@
 
     <include layout="@layout/layout_toolbar"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <include layout="@layout/layout_line"/>
+    <RelativeLayout
+        android:id="@+id/rl_modify_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/selector_white_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改个人信息"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_line"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <include layout="@layout/layout_line"/>
+    <RelativeLayout
+        android:id="@+id/rl_modify_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/selector_white_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改登录密码"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_line"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+    <include layout="@layout/layout_line"/>
+    <RelativeLayout
+        android:id="@+id/rl_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="@drawable/selector_white_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前版本"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/tv_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="1.0.0"
+            android:textSize="16sp"
+            android:textColor="@color/colorBlack"/>
+    </RelativeLayout>
+    <include layout="@layout/layout_line"/>
+
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:text="退出登录"
         android:textColor="@color/colorWhite"
         android:background="@drawable/selector_btn_app"/>

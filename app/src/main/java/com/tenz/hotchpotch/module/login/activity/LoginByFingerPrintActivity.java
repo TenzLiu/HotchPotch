@@ -14,7 +14,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.helper.CryptoObjectHelper;
-import com.tenz.hotchpotch.module.main.MainActivity;
+import com.tenz.hotchpotch.module.main.activity.MainActivity;
 import com.tenz.hotchpotch.rx.RxScheduler;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;

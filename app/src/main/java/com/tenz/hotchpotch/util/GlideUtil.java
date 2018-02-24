@@ -26,7 +26,8 @@ public class GlideUtil {
     private static RequestOptions mRequestOptions = new RequestOptions()
             .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.mipmap.default_icon);
+            .placeholder(R.mipmap.default_icon)
+            .error(R.mipmap.default_icon);
     private static DrawableTransitionOptions mDrawableTransitionOptions = new DrawableTransitionOptions()
             .crossFade(800);
 
@@ -40,7 +41,6 @@ public class GlideUtil {
         Glide.with(context)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -54,7 +54,6 @@ public class GlideUtil {
         Glide.with(fragment)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -72,7 +71,6 @@ public class GlideUtil {
                         .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(resId))
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -90,7 +88,6 @@ public class GlideUtil {
                         .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .placeholder(resId))
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -104,7 +101,6 @@ public class GlideUtil {
         Glide.with(context)
                 .load(url)
                 .apply(requestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -118,7 +114,6 @@ public class GlideUtil {
         Glide.with(fragment)
                 .load(url)
                 .apply(requestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageView);
     }
 
@@ -132,7 +127,6 @@ public class GlideUtil {
         Glide.with(context)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageViewTarget);
     }
 
@@ -146,7 +140,6 @@ public class GlideUtil {
         Glide.with(fragment)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .into(imageViewTarget);
     }
 
@@ -161,7 +154,6 @@ public class GlideUtil {
         Glide.with(context)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .listener(requestListener)
                 .into(imageView);
     }
@@ -177,7 +169,6 @@ public class GlideUtil {
         Glide.with(fragment)
                 .load(url)
                 .apply(mRequestOptions)
-                .transition(mDrawableTransitionOptions)
                 .listener(requestListener)
                 .into(imageView);
     }

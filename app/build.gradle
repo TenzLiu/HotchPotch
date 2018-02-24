@@ -8,7 +8,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -86,15 +86,25 @@ dependencies {
     compile 'com.bm.photoview:library:1.4.1'
     //BaseRecyclerViewAdapterHelper
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
-    // Glide
-    compile 'com.github.bumptech.glide:glide:4.0.0'
-    compile 'com.github.bumptech.glide:okhttp-integration:1.3.1'
+    // Glide(takephoto已有引用)
+    //    compile 'com.github.bumptech.glide:glide:4.3.1'
+    //    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    //    compile "com.github.bumptech.glide:okhttp3-integration:4.3.1"
     //badgeview未读红点
     compile 'q.rorbin:badgeview:1.1.3'
     //banner轮播
     compile 'com.youth.banner:banner:1.4.10'
     //ijkplayer视频播放(https://github.com/CarGuo/GSYVideoPlayer)
     compile 'com.shuyu:gsyVideoPlayer-java:4.0.0-beat1'
-    compile 'com.shuyu:gsyVideoPlayer-ex_so:4.0.0-beat1'
-
+    compile 'com.shuyu:gsyVideoPlayer-armv5:4.0.0-beat1'
+    compile 'com.shuyu:gsyVideoPlayer-armv7a:4.0.0-beat1'
+    compile 'com.shuyu:gsyVideoPlayer-arm64:4.0.0-beat1'
+    compile 'com.shuyu:gsyVideoPlayer-x64:4.0.0-beat1'
+    compile 'com.shuyu:gsyVideoPlayer-x86:4.0.0-beat1'
+    //compile 'com.shuyu:gsyVideoPlayer-ex_so:4.0.0-beat1'
+    //拍照、图片选择
+    implementation project(':takephoto_library')
+    //dialog(https://github.com/Othershe/NiceDialog)
+    compile 'com.github.Othershe:NiceDialog:1.1.4'
+    implementation project(':zxing')
 }

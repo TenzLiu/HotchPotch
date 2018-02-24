@@ -14,7 +14,7 @@ import com.tenz.hotchpotch.base.BaseMvpActivity;
 import com.tenz.hotchpotch.module.login.contract.LoginContract;
 import com.tenz.hotchpotch.module.login.model.LoginModel;
 import com.tenz.hotchpotch.module.login.presenter.LoginPresenter;
-import com.tenz.hotchpotch.module.main.MainActivity;
+import com.tenz.hotchpotch.module.main.activity.MainActivity;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.StringUtil;

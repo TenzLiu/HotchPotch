@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@mipmap/about_bg">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/logo"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/tv_version_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="1.0.1"
+                android:textColor="@color/colorAppSelect"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_bg_white_radius">
+                <TextView
+                    android:id="@+id/tv_about_production"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关于作品"
+                    android:textColor="@color/colorAppSelect"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/tv_production_introduction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/tv_about_production"
+                    android:lineSpacingExtra="5dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="15dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_bg_white_radius">
+                <TextView
+                    android:id="@+id/tv_about_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关于作者"
+                    android:textColor="@color/colorAppSelect"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/tv_about_author"
+                    android:text="name："
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_below="@+id/tv_about_author"
+                    android:layout_toRightOf="@+id/tv_name"
+                    android:text="TenzLiu"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/tv_name"
+                    android:text="email："
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_author_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_toRightOf="@+id/tv_email"
+                    android:text="TenzLiu@163.com"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/tv_email"
+                    android:text="github address："
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_author_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_below="@+id/tv_email"
+                    android:layout_toRightOf="@id/tv_github"
+                    android:text="https://github.com/TenzLiu"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

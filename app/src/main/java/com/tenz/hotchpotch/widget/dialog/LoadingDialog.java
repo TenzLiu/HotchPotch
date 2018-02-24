@@ -3,6 +3,8 @@ package com.tenz.hotchpotch.widget.dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import com.tenz.hotchpotch.R;
+
 /**
  * Author: TenzLiu
  * Date: 2018-01-18 17:56
@@ -19,4 +21,5 @@ public class LoadingDialog extends ProgressDialog {
         super(context, theme);
         setCanceledOnTouchOutside(false);
     }
+
 }

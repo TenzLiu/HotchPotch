@@ -142,6 +142,7 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
     private void initModuleData() {
         for(int i=0; i<8; i++){
             Module module = new Module();
+            module.setLogo("");
             module.setName("模块"+i);
             mModuleList.add(module);
         }

@@ -9,6 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.InvokeListener;
+import com.jph.takephoto.permission.PermissionManager;
+import com.jph.takephoto.permission.TakePhotoInvocationHandler;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.util.LogUtil;
@@ -28,7 +36,8 @@ import butterknife.Unbinder;
  * Description: BaseActivity
  */
 
-public abstract class BaseActivity extends RxAppCompatActivity implements IBaseView {
+public abstract class BaseActivity extends RxAppCompatActivity implements IBaseView,
+        TakePhoto.TakeResultListener,InvokeListener {
 
     /**
      * 上下文对象
@@ -42,11 +51,72 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * 加载框
      */
     private LoadingDialog mLoadingDialog;
+    /**
+     * 拍照
+     */
+    private TakePhoto takePhoto;
+    private InvokeParam invokeParam;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getTakePhoto().onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        getTakePhoto().onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionManager.TPermissionType type=PermissionManager.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        PermissionManager.handlePermissionsResult(this,type,invokeParam,this);
+    }
+
+    /**
+     *  获取TakePhoto实例
+     * @return
+     */
+    public TakePhoto getTakePhoto(){
+        if (takePhoto==null){
+            takePhoto= (TakePhoto) TakePhotoInvocationHandler.of(this)
+                    .bind(new TakePhotoImpl(this,this));
+        }
+        return takePhoto;
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        //LogUtil.d("takeSuccess：" + result.getImage().getCompressPath());
+    }
+
+    @Override
+    public void takeFail(TResult result,String msg) {
+        //LogUtil.d("takeFail:" + msg);
+        ToastUtil.showToast(msg);
+    }
+
+    @Override
+    public void takeCancel() {
+        LogUtil.d( getResources().getString(R.string.msg_operation_canceled));
+    }
+
+    @Override
+    public PermissionManager.TPermissionType invoke(InvokeParam invokeParam) {
+        PermissionManager.TPermissionType type=PermissionManager.checkPermission(TContextWrap.of(this),invokeParam.getMethod());
+        if(PermissionManager.TPermissionType.WAIT.equals(type)){
+            this.invokeParam=invokeParam;
+        }
+        return type;
     }
 
     /**
@@ -63,6 +133,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         //设置强制竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         mContext = this;
+        //设置拍照
+        getTakePhoto().onCreate(savedInstanceState);
         initView(savedInstanceState);
         initData();
         AppManager.getInstance().addActivity(this);
@@ -135,7 +207,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
     @Override
     public void showLoadingDialog(String message) {
         if(mLoadingDialog == null){
-            mLoadingDialog = new LoadingDialog(this);
+            mLoadingDialog = new LoadingDialog(mContext);
         }else if(mLoadingDialog.isShowing()){
             return;
         }
@@ -145,7 +217,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
 
     @Override
     public void dismissLoadingDialog() {
-        if(mLoadingDialog != null && mLoadingDialog.isShowing()){
+        if(mLoadingDialog != null){
             mLoadingDialog.dismiss();
         }
     }

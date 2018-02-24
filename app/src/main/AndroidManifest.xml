@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -31,15 +32,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".module.main.MainActivity"/>
+        <activity android:name=".module.main.activity.MainActivity"/>
         <activity android:name=".module.guide.GuideActivity"/>
         <activity android:name=".module.login.activity.LoginActivity"/>
         <activity android:name=".module.login.activity.LoginByFingerPrintActivity"/>
-        <activity android:name=".module.main.SettingActivity"/>
+        <activity android:name=".module.main.activity.SettingActivity"/>
         <activity android:name=".module.news.activity.NewsDetailActivity"/>
         <activity android:name=".module.photo.activity.PhotoDetailActivity"/>
         <activity android:name=".module.video.activity.VideoDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity android:name=".module.main.activity.WebActivity"/>
+        <activity android:name=".module.main.activity.AboutActivity"/>
+        <activity android:name=".module.main.activity.ZXingActivity"/>
+        <activity android:name=".module.main.activity.ZXingScanActivity"/>
+
 
     </application>
 

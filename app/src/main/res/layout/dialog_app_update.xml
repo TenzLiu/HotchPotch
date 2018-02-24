@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/shape_bg_white_radius">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="发现新版本"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="3dp"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:text="1.修复已知bug；\n2.优化部分界面；\n3.杀了一个程序猿祭天。"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:gravity="right">
+        <Button
+            android:id="@+id/btn_later"
+            android:layout_width="wrap_content"
+            android:layout_height="35sp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:text="以后再说"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:background="@drawable/shape_bg_blue_radius"/>
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="35sp"
+            android:padding="5dp"
+            android:text="    更新    "
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp"
+            android:background="@drawable/shape_bg_blue_radius"/>
+    </LinearLayout>
+
+</LinearLayout>

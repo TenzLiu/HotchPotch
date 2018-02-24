@@ -15,7 +15,7 @@ import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.guide.GuideActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
-import com.tenz.hotchpotch.module.main.MainActivity;
+import com.tenz.hotchpotch.module.main.activity.MainActivity;
 import com.tenz.hotchpotch.rx.RxScheduler;
 import com.tenz.hotchpotch.util.DisplayUtil;
 import com.tenz.hotchpotch.util.SpUtil;

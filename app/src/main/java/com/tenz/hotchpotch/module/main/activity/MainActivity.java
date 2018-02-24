@@ -1,4 +1,4 @@
-package com.tenz.hotchpotch.module.main;
+package com.tenz.hotchpotch.module.main.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,25 +14,39 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
+import com.jph.takephoto.model.TImage;
+import com.jph.takephoto.model.TResult;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.helper.BottomNavigationViewHelperHelp;
+import com.tenz.hotchpotch.helper.TakePhotoHelper;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.fragment.HomeFragment;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
+import com.tenz.hotchpotch.util.GlideUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
+import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
+import com.tenz.hotchpotch.util.StringUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.image.MovingImageView;
 import com.tenz.hotchpotch.widget.image.MovingViewAnimator;
 import com.tenz.hotchpotch.widget.image.ShapeImageView;
 import com.ttsea.jrxbus2.RxBus2;
 import com.ttsea.jrxbus2.Subscribe;
+
+import java.io.File;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -138,16 +152,19 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.item_github_address:
-
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url","https://github.com/TenzLiu/HotchPotch");
+                        bundle.putString("htmlData","");
+                        startActivity(WebActivity.class,bundle);
                         break;
                     case R.id.item_qrcode:
-
+                        startActivity(ZXingActivity.class);
                         break;
                     case R.id.item_share:
 
                         break;
                     case R.id.item_about:
-
+                        startActivity(AboutActivity.class);
                         break;
                     case R.id.item_setting:
                         startActivity(SettingActivity.class);
@@ -190,7 +207,7 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
         siv_head_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new TakePhotoHelper().takePhoto(MainActivity.this,getTakePhoto(),true,true);
             }
         });
     }
@@ -260,6 +277,10 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     @Override
     protected void initData() {
         super.initData();
+        //设置用户头像
+        if(!StringUtil.isEmpty(SpUtil.getString(mContext,Constant.KEY_USER_HEAD,""))){
+            GlideUtil.loadImage(mContext,new File(SpUtil.getString(mContext,Constant.KEY_USER_HEAD,"")),siv_head_icon);
+        }
     }
 
     /**
@@ -289,6 +310,49 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     }
 
     @Override
+    public void toNews() {
+        bnv_content.setSelectedItemId(R.id.item_news);
+    }
+
+    @Override
+    public void toVideo() {
+        bnv_content.setSelectedItemId(R.id.item_video);
+    }
+
+    @Override
+    public void toPhoto() {
+        bnv_content.setSelectedItemId(R.id.item_photo);
+    }
+
+    @Override
+    public void takeCancel() {
+        super.takeCancel();
+    }
+
+    @Override
+    public void takeFail(TResult result, String msg) {
+        super.takeFail(result, msg);
+    }
+
+    @Override
+    public void takeSuccess(TResult result) {
+        super.takeSuccess(result);
+        SpUtil.putString(mContext,Constant.KEY_USER_HEAD,result.getImage().getCompressPath());
+        GlideUtil.loadImage(mContext,new File(result.getImage().getCompressPath()),siv_head_icon);
+    }
+
+    /**
+     * RxBus token过期接收通知
+     * @param msg
+     */
+    @Subscribe(code = Constant.CODE_CODEOVERDUE)
+    public void onCodeEvent(String msg){
+        ToastUtil.showToast(msg);
+        startActivity(LoginActivity.class);
+        AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
+    }
+
+    @Override
     public void back() {
         super.back();
         if(isMenuDrawerLayoutOpen()){
@@ -306,32 +370,6 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     @Override
     public void onBackPressed() {
         back();
-    }
-
-    @Override
-    public void toNews() {
-        bnv_content.setSelectedItemId(R.id.item_news);
-    }
-
-    @Override
-    public void toVideo() {
-        bnv_content.setSelectedItemId(R.id.item_video);
-    }
-
-    @Override
-    public void toPhoto() {
-        bnv_content.setSelectedItemId(R.id.item_photo);
-    }
-
-    /**
-     * RxBus token过期接收通知
-     * @param msg
-     */
-    @Subscribe(code = Constant.CODE_CODEOVERDUE)
-    public void onCodeEvent(String msg){
-        ToastUtil.showToast(msg);
-        startActivity(LoginActivity.class);
-        AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
     }
 
     @Override
