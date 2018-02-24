@@ -134,7 +134,11 @@ public class PhotoFragment extends BaseMvpFragment<PhotoPresenter,PhotoModel>
     public void showPhotos(boolean isRefresh, boolean isNoMoreData, List<GetPhotos.Photo> photoList) {
         srl_photo.setRefreshing(false);
         if(isRefresh){
-            mPhotoAdapter.setNewData(photoList);
+            if(photoList.size()==0){
+                mPhotoAdapter.setEmptyView(R.layout.layout_view_empty);
+            }else{
+                mPhotoAdapter.setNewData(photoList);
+            }
         }else{
             mPhotoAdapter.addData(photoList);
         }

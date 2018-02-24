@@ -132,7 +132,11 @@ public class VideoFragment extends BaseMvpFragment<VideoPresenter,VideoModel>
     public void showVideos(boolean isRefresh, boolean isNoMoreData, List<GetVideos.Video> videoList) {
         srl_video.setRefreshing(false);
         if(isRefresh){
-            mVideoAdapter.setNewData(videoList);
+            if(videoList.size()==0){
+                mVideoAdapter.setEmptyView(R.layout.layout_view_empty);
+            }else{
+                mVideoAdapter.setNewData(videoList);
+            }
         }else{
             mVideoAdapter.addData(videoList);
         }

@@ -107,7 +107,11 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
     public void showNews(boolean isRefresh, boolean isNoMoreData, GetNews getNews) {
         srl_container.setRefreshing(false);
         if(isRefresh){
-            newsAdapter.setNewData(getNews.getData());
+            if(getNews.getData().size()==0){
+                newsAdapter.setEmptyView(R.layout.layout_view_empty);
+            }else{
+                newsAdapter.setNewData(getNews.getData());
+            }
         }else{
             newsAdapter.addData(getNews.getData());
         }
@@ -137,6 +141,7 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
                 startActivity(NewsDetailActivity.class,bundle);
             }
         });
+        newsAdapter.setEmptyView(R.layout.layout_view_empty);
     }
 
     @Override
