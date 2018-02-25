@@ -99,7 +99,7 @@ public class SettingActivity extends BaseActivity {
         //判断版本号
         if(AppUtil.getVersionCode(mContext)>0){
             NiceDialog.init()
-                    .setLayoutId(R.layout.dialog_app_update)     //设置dialog布局文件
+                    .setLayoutId(R.layout.layout_dialog_app_update)     //设置dialog布局文件
                     .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
                         @Override
                         public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {

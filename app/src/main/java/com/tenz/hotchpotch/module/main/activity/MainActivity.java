@@ -20,6 +20,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.jph.takephoto.model.TImage;
 import com.jph.takephoto.model.TResult;
+import com.othershe.nicedialog.BaseNiceDialog;
+import com.othershe.nicedialog.NiceDialog;
+import com.othershe.nicedialog.ViewConvertListener;
+import com.othershe.nicedialog.ViewHolder;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
@@ -207,7 +211,45 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
         siv_head_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TakePhotoHelper().takePhoto(MainActivity.this,getTakePhoto(),true,true);
+                NiceDialog.init()
+                        .setLayoutId(R.layout.layout_dialog_take_photo)     //设置dialog布局文件
+                        .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                            @Override
+                            public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                                holder.setOnClickListener(R.id.tv_take_photo, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        //拍照
+                                        new TakePhotoHelper().takePhoto(MainActivity.this,
+                                                getTakePhoto(),true,true);
+                                    }
+                                });
+                                holder.setOnClickListener(R.id.tv_album, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        //相册
+                                        new TakePhotoHelper().takePhotoAlbum(MainActivity.this,
+                                                getTakePhoto(),true,true,1);
+                                    }
+                                });
+                                holder.setOnClickListener(R.id.tv_cancel, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
+                        })
+                        //.setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
+                        .setShowBottom(true)     //是否在底部显示dialog，默认flase
+                        .setMargin(10)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
+                        //.setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
+                        //.setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
+                        //.setOutCancel(false)     //点击dialog外是否可取消，默认true
+                        //.setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
+                        .show(getSupportFragmentManager());     //显示dialog
             }
         });
     }
