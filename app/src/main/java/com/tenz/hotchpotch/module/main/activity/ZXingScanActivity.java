@@ -92,10 +92,10 @@ public class ZXingScanActivity extends BaseActivity implements QRCodeView.Delega
             case R.id.ll_flash:
                 if(!isOpenFlashLight){
                     zv_qrcode.openFlashlight();
-                    iv_flash_light.setImageResource(R.mipmap.album_s);
+                    iv_flash_light.setImageResource(R.mipmap.flash_s);
                 }else{
                     zv_qrcode.closeFlashlight();
-                    iv_flash_light.setImageResource(R.mipmap.album_n);
+                    iv_flash_light.setImageResource(R.mipmap.flash_n);
                 }
                 isOpenFlashLight = ! isOpenFlashLight;
                 break;
@@ -165,9 +165,9 @@ public class ZXingScanActivity extends BaseActivity implements QRCodeView.Delega
     @Override
     protected void onStart() {
         super.onStart();
-        /*zv_qrcode.startCamera();
+        zv_qrcode.startCamera();
         zv_qrcode.showScanRect();
-        zv_qrcode.startSpot();*/
+        zv_qrcode.startSpot();
     }
 
     @Override
