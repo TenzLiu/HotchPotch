@@ -7,8 +7,8 @@ android {
         applicationId "com.tenz.hotchpotch"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 6
+        versionName "1.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -107,4 +107,6 @@ dependencies {
     //dialog(https://github.com/Othershe/NiceDialog)
     compile 'com.github.Othershe:NiceDialog:1.1.4'
     implementation project(':zxing')
+    //okhttp封装框架
+    compile 'com.zhy:okhttputils:2.6.2'
 }

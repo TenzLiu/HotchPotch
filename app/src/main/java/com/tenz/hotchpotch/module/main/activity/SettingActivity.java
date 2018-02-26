@@ -1,9 +1,15 @@
 package com.tenz.hotchpotch.module.main.activity;
 
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.othershe.nicedialog.BaseNiceDialog;
@@ -15,7 +21,9 @@ import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
+import com.tenz.hotchpotch.service.AppUpdateService;
 import com.tenz.hotchpotch.util.AppUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
@@ -37,9 +45,48 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.tv_version_name)
     TextView tv_version_name;
 
+    private BaseNiceDialog appUpdateProgressDialog;
+    private ProgressBar pb_update;
+    private TextView tv_progress;
+
     private int versionCode;
     private String versionName;
-    private String apkUrl = "http://pro-app-tc.fir.im/f1f7e92b1bb735baea5b85f162a560ef704b490a.apk?sign=5b5d2430ce1d6ca45ac9c475a319de9d&t=5a7c218f";
+    private String apkUrl = "http://pro-app-qn.fir.im/46b10550719bd83157235014fec0144b8291e5d8.apk?" +
+            "attname=hotchpotch.apk_1.6.2.apk&e=1519633005&token=LOvmia8oXF4xnLh0IdH05XMYpH6ENHNpARlmPc-T:bpNO0snU5oIkIFXithxANx3Rt5A=";
+
+    private AppUpdateService.MyBinder myBinder;
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myBinder = (AppUpdateService.MyBinder) service;
+            myBinder.getService().setmProgressListener(new AppUpdateService.OnProgressListener() {
+                @Override
+                public void onProgress(int progress) {
+                    //更新对话框进度条
+                    LogUtil.d("*************progress**********"+progress);
+                    pb_update.setProgress(progress);
+                    tv_progress.setText(String.valueOf(progress)+"%");
+                }
+
+                @Override
+                public void onSuccess(boolean isSuccess) {
+                    appUpdateProgressDialog.dismiss();
+                    //失败提示
+                    if (!isSuccess) {
+                        showToast("下载失败");
+                    }else{
+                        showToast("下载成功");
+                    }
+                }
+
+            });
+        }
+    };
 
     @Override
     protected int getLayoutId() {
@@ -58,6 +105,9 @@ public class SettingActivity extends BaseActivity {
         super.initData();
         versionCode = AppUtil.getVersionCode(mContext);
         versionName = AppUtil.getAppVersionName(mContext);
+        // 绑定Service
+        Intent intent = new Intent(this,AppUpdateService.class);
+        bindService(intent,connection, Context.BIND_AUTO_CREATE);
     }
 
     @OnClick({R.id.rl_modify_information,R.id.rl_modify_password,R.id.rl_version,R.id.btn_logout})
@@ -70,7 +120,7 @@ public class SettingActivity extends BaseActivity {
 
                 break;
             case R.id.rl_version:
-                updateVersion();
+                checkUpdateVersion();
                 break;
             case R.id.btn_logout:
                 ConfirmDialog.show(getSupportFragmentManager(), "提示", "确定退出登录",new ConfirmDialog.ConfirmDialogListener(){
@@ -93,11 +143,12 @@ public class SettingActivity extends BaseActivity {
     }
 
     /**
-     * 版本更新
+     * App检查版本更新
      */
-    private void updateVersion() {
+    private void checkUpdateVersion() {
         //判断版本号
         if(AppUtil.getVersionCode(mContext)>0){
+            //App版本更新对话框
             NiceDialog.init()
                     .setLayoutId(R.layout.layout_dialog_app_update)     //设置dialog布局文件
                     .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
@@ -113,7 +164,8 @@ public class SettingActivity extends BaseActivity {
                                 @Override
                                 public void onClick(View v) {
                                     dialog.dismiss();
-                                    ToastUtil.showToast("update...");
+                                    //apk下载更新
+                                    appUpdate();
                                 }
                             });
                         }
@@ -126,7 +178,58 @@ public class SettingActivity extends BaseActivity {
                     //.setOutCancel(false)     //点击dialog外是否可取消，默认true
                     //.setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
                     .show(getSupportFragmentManager());     //显示dialog
+        }else{
+            ToastUtil.showToast("当前已是最新版本");
         }
+    }
+
+    /**
+     * App版本更新
+     */
+    private void appUpdate() {
+        //App版本更新下载进度对话框
+        appUpdateProgressDialog = NiceDialog.init()
+                .setLayoutId(R.layout.layout_dialog_app_update_progress)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                        pb_update = holder.getView(R.id.pb_update);
+                        tv_progress = holder.getView(R.id.tv_progress);
+                        //初始化为0
+                        pb_update.setProgress(0);
+                        tv_progress.setText("0%");
+                        holder.setOnClickListener(R.id.tv_update_cancel, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //取消更新
+                                myBinder.calcelDowmload();
+                            }
+                        });
+                        holder.setOnClickListener(R.id.tv_update_background, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //后台更新
+                            }
+                        });
+                    }
+                })
+                //.setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
+                //.setShowBottom(true)     //是否在底部显示dialog，默认flase
+                .setMargin(30)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
+        //.setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
+        //.setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
+        //.setOutCancel(false)     //点击dialog外是否可取消，默认true
+        //.setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
+        .show(getSupportFragmentManager());//显示dialog
+        myBinder.dwonLoadApk(apkUrl,"hotchpotch.apk");
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindService(connection);
+        super.onDestroy();
     }
 
 }
