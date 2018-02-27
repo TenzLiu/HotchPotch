@@ -27,58 +27,46 @@
                 android:background="@color/colorWhite"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/btn_create_ch_qr_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="生成中文二维码"
-                    android:textSize="12sp"
-                    android:padding="5dp"
-                    android:textColor="@color/colorWhite"
-                    android:background="@drawable/shape_bg_blue_radius"/>
-                <View
-                    android:layout_width="50dp"
-                    android:layout_height="0dp"/>
-                <Button
-                    android:id="@+id/btn_create_ch_with_logo_qr_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="生成中文带logo二维码"
-                    android:textSize="12sp"
-                    android:padding="5dp"
-                    android:textColor="@color/colorWhite"
-                    android:background="@drawable/shape_bg_blue_radius"/>
-
-            </LinearLayout>
-            <LinearLayout
+                android:id="@+id/ll_container_qrcode_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_create_en_qr_code"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll_qrcode_type"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="生成英文二维码"
-                    android:textSize="12sp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
                     android:padding="5dp"
-                    android:textColor="@color/colorWhite"
-                    android:background="@drawable/shape_bg_blue_radius"/>
-                <View
-                    android:layout_width="50dp"
-                    android:layout_height="0dp"/>
+                    android:background="@drawable/shape_bg_white_radius">
+                    <TextView
+                        android:id="@+id/tv_qrcode_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:text="生成中文二维码"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"/>
+                    <ImageView
+                        android:id="@+id/iv_qrcode_type"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@mipmap/down"/>
+                </LinearLayout>
                 <Button
-                    android:id="@+id/btn_create_en_with_logo_qr_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="生成英文带logo二维码"
+                    android:id="@+id/btn_create_qr_code"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:text="生成"
                     android:textSize="12sp"
                     android:padding="5dp"
                     android:textColor="@color/colorWhite"
@@ -90,7 +78,7 @@
                 android:id="@+id/iv_qr_code"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:src="@mipmap/default_icon"
                 android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"/>
@@ -99,7 +87,8 @@
                 android:id="@+id/tv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:layout_gravity="center_horizontal"
                 android:text="结果：https://github.com/TenzLiu/HotchPotch"/>
 

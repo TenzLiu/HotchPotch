@@ -10,7 +10,20 @@ android {
         versionCode 6
         versionName "1.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "ca6a4421e852f85f9bd1806e", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
+
     signingConfigs {
         release {
             storeFile file('hotchpotch123456.jks')
@@ -38,6 +51,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+buildscript {
+    repositories {
+        jcenter()
     }
 }
 
@@ -109,4 +128,7 @@ dependencies {
     implementation project(':zxing')
     //okhttp封装框架
     compile 'com.zhy:okhttputils:2.6.2'
+    //极光推送分享
+    compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以JCore 1.1.9 版本为例。
 }

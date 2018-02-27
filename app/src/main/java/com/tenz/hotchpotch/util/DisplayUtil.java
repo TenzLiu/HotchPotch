@@ -162,7 +162,6 @@ public class DisplayUtil {
         return actionBarHeight;
     }
 
-
     /**
      * 设置view margin
      *
@@ -178,6 +177,17 @@ public class DisplayUtil {
             p.setMargins(l, t, r, b);
             v.requestLayout();
         }
+    }
+
+    /**
+     * 测量View的宽高
+     *
+     * @param view View
+     */
+    public static void measureWidthAndHeight(View view) {
+        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        view.measure(widthMeasureSpec, heightMeasureSpec);
     }
 
 }

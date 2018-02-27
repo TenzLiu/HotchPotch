@@ -23,7 +23,6 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.service.AppUpdateService;
 import com.tenz.hotchpotch.util.AppUtil;
-import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
@@ -68,7 +67,6 @@ public class SettingActivity extends BaseActivity {
                 @Override
                 public void onProgress(int progress) {
                     //更新对话框进度条
-                    LogUtil.d("*************progress**********"+progress);
                     pb_update.setProgress(progress);
                     tv_progress.setText(String.valueOf(progress)+"%");
                 }
@@ -170,13 +168,7 @@ public class SettingActivity extends BaseActivity {
                             });
                         }
                     })
-                    //.setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
-                    //.setShowBottom(true)     //是否在底部显示dialog，默认flase
                     .setMargin(30)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
-                    //.setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
-                    //.setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
-                    //.setOutCancel(false)     //点击dialog外是否可取消，默认true
-                    //.setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
                     .show(getSupportFragmentManager());     //显示dialog
         }else{
             ToastUtil.showToast("当前已是最新版本");
@@ -215,13 +207,7 @@ public class SettingActivity extends BaseActivity {
                         });
                     }
                 })
-                //.setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
-                //.setShowBottom(true)     //是否在底部显示dialog，默认flase
                 .setMargin(30)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
-        //.setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
-        //.setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
-        //.setOutCancel(false)     //点击dialog外是否可取消，默认true
-        //.setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
         .show(getSupportFragmentManager());//显示dialog
         myBinder.dwonLoadApk(apkUrl,"hotchpotch.apk");
     }

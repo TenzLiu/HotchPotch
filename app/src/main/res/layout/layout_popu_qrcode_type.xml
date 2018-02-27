@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:gravity="center_horizontal"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_create_ch_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="生成中文二维码"/>
+    <include layout="@layout/layout_line"/>
+    <TextView
+        android:id="@+id/tv_create_ch_with_logo_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="生成中文带logo二维码"/>
+    <include layout="@layout/layout_line"/>
+    <TextView
+        android:id="@+id/tv_create_en_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="生成英文二维码"/>
+    <include layout="@layout/layout_line"/>
+    <TextView
+        android:id="@+id/tv_create_en_with_logo_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:text="生成英文带logo二维码"/>
+
+</LinearLayout>

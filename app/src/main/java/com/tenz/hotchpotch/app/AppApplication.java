@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import com.tenz.hotchpotch.util.LogUtil;
 
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -31,6 +32,9 @@ public class AppApplication extends Application {
         sHandler = new Handler();
         sMainThreadId = android.os.Process.myTid();
         LogUtil.init(DEBUG);
+        //极光初始化
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     /**
