@@ -11,7 +11,7 @@ android {
         versionName "1.6.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        ndk {
+        /*ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
@@ -21,7 +21,8 @@ android {
                 JPUSH_PKGNAME : applicationId,
                 JPUSH_APPKEY : "ca6a4421e852f85f9bd1806e", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-        ]
+                TENCENT_APPID: "1106671627",//腾讯开放平台注册应用得到的 appId
+        ]*/
     }
 
     signingConfigs {
@@ -65,6 +66,7 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url "https://maven.google.com" }
+        maven {url "http://developer.huawei.com/repo/"}
     }
 }
 
@@ -80,39 +82,54 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:cardview-v7:26.+'
     compile 'com.android.support:recyclerview-v7:26.+'
+
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
     // RxJava
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
+
     //https://github.com/Jasonzhou613/JRxBus2
     compile 'com.ttsea.jrxbus2:jrxbus2:1.0.3'
+
     //butterknife注解
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     //rxpermissions
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+
     //logger日志打印
     compile 'com.orhanobut:logger:2.1.1'
+
     //PhotoView
     compile 'com.bm.photoview:library:1.4.1'
+
     //BaseRecyclerViewAdapterHelper
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
+
     // Glide(takephoto已有引用)
+
     //    compile 'com.github.bumptech.glide:glide:4.3.1'
+
     //    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+
     //    compile "com.github.bumptech.glide:okhttp3-integration:4.3.1"
+
     //badgeview未读红点
     compile 'q.rorbin:badgeview:1.1.3'
+
     //banner轮播
     compile 'com.youth.banner:banner:1.4.10'
+
     //ijkplayer视频播放(https://github.com/CarGuo/GSYVideoPlayer)
     compile 'com.shuyu:gsyVideoPlayer-java:4.0.0-beat1'
     compile 'com.shuyu:gsyVideoPlayer-armv5:4.0.0-beat1'
@@ -120,15 +137,29 @@ dependencies {
     compile 'com.shuyu:gsyVideoPlayer-arm64:4.0.0-beat1'
     compile 'com.shuyu:gsyVideoPlayer-x64:4.0.0-beat1'
     compile 'com.shuyu:gsyVideoPlayer-x86:4.0.0-beat1'
+
     //compile 'com.shuyu:gsyVideoPlayer-ex_so:4.0.0-beat1'
+
     //拍照、图片选择
     implementation project(':takephoto_library')
+
     //dialog(https://github.com/Othershe/NiceDialog)
     compile 'com.github.Othershe:NiceDialog:1.1.4'
     implementation project(':zxing')
+
     //okhttp封装框架
     compile 'com.zhy:okhttputils:2.6.2'
-    //极光推送分享
-    compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
-    compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以JCore 1.1.9 版本为例。
+
+    //极光推送分享分享
+
+    /*compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
+        compile 'cn.jiguang.sdk:jshare:1.5.0'  // 此处以 JShare 1.5.0 版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
+        compile 'cn.jiguang.sdk:jshare-qqmodel:1.5.0'  // 此处以 jshare-qqmodel 1.5.0  版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
+        compile 'cn.jiguang.sdk:jshare-wechatmodel:1.5.0'  // 此处以 jshare-wechatmodel 1.5.0  版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
+        compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以 JCore 1.1.9 版本为例，具体版本请参考压缩包 libs 的 jar 包版本。*/
+    implementation files('libs/jcore-android-1.1.9.jar')
+    implementation files('libs/jpush-android-3.1.1.jar')
+    implementation files('libs/jshare-android-1.5.0.jar')
+    implementation files('libs/jshare-qq-android-1.5.0.jar')
+    implementation files('libs/jshare-wechat-android-1.5.0.jar')
 }

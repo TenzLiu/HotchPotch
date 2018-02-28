@@ -6,6 +6,8 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -56,6 +58,16 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      */
     private TakePhoto takePhoto;
     private InvokeParam invokeParam;
+
+    /**
+     * 是否显示toolbar的右上角按钮
+     */
+    private boolean isShowRight;
+    /**
+     * toolbar的右上角按钮类型
+     * 1:分享
+     */
+    private int rightType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -169,29 +181,89 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * @param title
      */
     protected void initTitleBar(Toolbar toolbar, String title){
-        initTitleBar(toolbar, title, "", null);
+        initTitleBar(toolbar, title, true, false, 0);
     }
 
     /**
      * 设置toolbar
      * @param toolbar
      * @param title
-     * @param subTitle
      */
-    protected void initTitleBar(Toolbar toolbar, String title, String subTitle,
-                                View.OnClickListener onSubTitleClickListener){
+    protected void initTitleBar(Toolbar toolbar, String title, boolean showHomeAsUp){
+        initTitleBar(toolbar, title, showHomeAsUp, false, 0);
+    }
+
+    /**
+     * 设置toolbar
+     * @param toolbar
+     * @param title
+     */
+    protected void initTitleBar(Toolbar toolbar, String title, boolean isShowRight, int rightType){
+        initTitleBar(toolbar, title, true, isShowRight, rightType);
+    }
+
+    /**
+     * 设置toolbar
+     * @param toolbar
+     * @param title
+     */
+    protected void initTitleBar(Toolbar toolbar, String title,
+                                boolean showHomeAsUp, boolean isShowRight, int rightType){
+        this.isShowRight = isShowRight;
+        this.rightType = rightType;
         toolbar.setTitle(title);
         //将Toolbar显示到界面
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//给左上角图标的左边加上一个返回的图标 。对应ActionBar.DISPLAY_HOME_AS_UP
-        getSupportActionBar().setDisplayShowHomeEnabled(true);//决定左上角的图标是否可以点击
-        toolbar.setNavigationIcon(ResourceUtil.getDrawable(R.mipmap.back_icon));//左上角的图标
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+        if(showHomeAsUp){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);//给左上角图标的左边加上一个返回的图标 。对应ActionBar.DISPLAY_HOME_AS_UP
+            getSupportActionBar().setDisplayShowHomeEnabled(true);//决定左上角的图标是否可以点击
+            toolbar.setNavigationIcon(ResourceUtil.getDrawable(R.mipmap.back_icon));//左上角的图标
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem menuItem;
+        if (isShowRight) {
+            getMenuInflater().inflate(R.menu.menu_toolbar_right, menu);
+            menuItem = menu.findItem(R.id.action_icon);
+            switch (rightType) {
+                case 1:
+                    //分享
+                    menuItem.setTitle("分享");
+                    break;
             }
-        });
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_icon:
+                onSubTitleClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * toolbar右上角按钮点击事件
+     */
+    protected void onSubTitleClick() {
+
     }
 
     @Override

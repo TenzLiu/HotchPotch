@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
@@ -23,13 +25,23 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.service.AppUpdateService;
 import com.tenz.hotchpotch.util.AppUtil;
+import com.tenz.hotchpotch.util.FileUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.ConfirmDialog;
 
+import java.io.File;
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jiguang.share.android.api.JShareInterface;
+import cn.jiguang.share.android.api.PlatActionListener;
+import cn.jiguang.share.android.api.Platform;
+import cn.jiguang.share.android.api.ShareParams;
+import cn.jiguang.share.qqmodel.QQ;
 
 /**
  * Author: TenzLiu
@@ -52,6 +64,8 @@ public class SettingActivity extends BaseActivity {
     private String versionName;
     private String apkUrl = "http://pro-app-qn.fir.im/46b10550719bd83157235014fec0144b8291e5d8.apk?" +
             "attname=hotchpotch.apk_1.6.2.apk&e=1519633005&token=LOvmia8oXF4xnLh0IdH05XMYpH6ENHNpARlmPc-T:bpNO0snU5oIkIFXithxANx3Rt5A=";
+
+    public String imageLogoPath;
 
     private AppUpdateService.MyBinder myBinder;
     private ServiceConnection connection = new ServiceConnection() {
@@ -106,6 +120,18 @@ public class SettingActivity extends BaseActivity {
         // 绑定Service
         Intent intent = new Intent(this,AppUpdateService.class);
         bindService(intent,connection, Context.BIND_AUTO_CREATE);
+
+        //获取logo路径
+        /*new Thread(){
+            @Override
+            public void run() {
+                File imageFile = FileUtil.copyResurces(mContext, "logo.png", "logo.png", 0);
+                if(imageFile != null){
+                    imageLogoPath = imageFile.getAbsolutePath();
+                }
+                super.run();
+            }
+        }.start();*/
     }
 
     @OnClick({R.id.rl_modify_information,R.id.rl_modify_password,R.id.rl_version,R.id.btn_logout})

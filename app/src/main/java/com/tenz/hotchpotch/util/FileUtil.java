@@ -240,6 +240,47 @@ public class FileUtil {
     }
 
     /**
+     * 将assert资源转换为file文件
+     * @param context
+     * @param src   assert路径
+     * @param dest  保存文件的名称
+     * @param flag  0:copy to sdcard  否则:copy to data
+     * @return
+     */
+    public static File copyResurces(Context context, String src, String dest, int flag){
+        File filesDir = null;
+        try {
+            if(flag == 0) {//copy to sdcard
+                filesDir = new File(AppUtil.getSDCardPath() + "/hotchpotch/" + dest);
+                File parentDir = filesDir.getParentFile();
+                if(!parentDir.exists()){
+                    parentDir.mkdirs();
+                }
+            }else{//copy to data
+                filesDir = new File(context.getFilesDir(), dest);
+            }
+            if(!filesDir.exists()) {
+                filesDir.createNewFile();
+                InputStream open = context.getAssets().open(src);
+                FileOutputStream fileOutputStream = new FileOutputStream(filesDir);
+                byte[] buffer = new byte[4 * 1024];
+                int len = 0;
+                while ((len = open.read(buffer)) != -1) {
+                    fileOutputStream.write(buffer, 0, len);
+                }
+                open.close();
+                fileOutputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            if(flag == 0){
+                filesDir = copyResurces( context, src,  dest, 1);
+            }
+        }
+        return filesDir;
+    }
+
+    /**
      * 回调
      */
     public interface SaveResultCallback {

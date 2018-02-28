@@ -138,6 +138,9 @@ public class NewsFragment extends BaseMvpFragment<NewsPrensenter,NewsModel>
                 Bundle bundle = new Bundle();
                 bundle.putString("url",news.getUrl());
                 bundle.putString("htmlData","");
+                bundle.putString("title",news.getUser_info()!=null?news.getUser_info().getName():"");
+                bundle.putString("content",news.getTitle());
+                bundle.putString("imageUrl",news.getUser_info()!=null?news.getUser_info().getAvatar_url():"");
                 startActivity(NewsDetailActivity.class,bundle);
             }
         });

@@ -336,6 +336,9 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
             Bundle bundle = new Bundle();
             bundle.putString("url",news.getUrl());
             bundle.putString("htmlData","");
+            bundle.putString("title",news.getUser_info()!=null?news.getUser_info().getName():"");
+            bundle.putString("content",news.getTitle());
+            bundle.putString("imageUrl",news.getUser_info()!=null?news.getUser_info().getAvatar_url():"");
             startActivity(NewsDetailActivity.class,bundle);
         }else if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_VIDEO_CONTENT){
             Bundle bundle = new Bundle();

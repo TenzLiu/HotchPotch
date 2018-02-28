@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import com.tenz.hotchpotch.util.LogUtil;
 
+import cn.jiguang.share.android.api.JShareInterface;
+import cn.jiguang.share.android.api.PlatformConfig;
 import cn.jpush.android.api.JPushInterface;
 
 
@@ -35,6 +37,11 @@ public class AppApplication extends Application {
         //极光初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        JShareInterface.setDebugMode(true);
+        PlatformConfig platformConfig = new PlatformConfig()
+                .setWechat("wxc40e16f3ba6ebabc", "dcad950cd0633a27e353477c4ec12e7a")
+                .setQQ("1106671627", "IGabM3RBSNz4bb4N");
+        JShareInterface.init(this,platformConfig);
     }
 
     /**

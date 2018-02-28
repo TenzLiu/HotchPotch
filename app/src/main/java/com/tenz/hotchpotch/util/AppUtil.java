@@ -172,7 +172,7 @@ public class AppUtil {
     public static String getSDCardPath(){
         File sdDir = null;
         if(isHasSDCard()){
-            sdDir = Environment.getExternalStorageDirectory();
+            sdDir = Environment.getExternalStorageDirectory().getAbsoluteFile();
         }
         if(sdDir != null){
             return sdDir.getPath();

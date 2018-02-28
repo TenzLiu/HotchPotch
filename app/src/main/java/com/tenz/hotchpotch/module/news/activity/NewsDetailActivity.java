@@ -10,11 +10,19 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
+import com.othershe.nicedialog.BaseNiceDialog;
+import com.othershe.nicedialog.NiceDialog;
+import com.othershe.nicedialog.ViewConvertListener;
+import com.othershe.nicedialog.ViewHolder;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseActivity;
+import com.tenz.hotchpotch.util.JShareUtil;
+import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.StringUtil;
 
 import butterknife.BindView;
+import cn.jiguang.share.qqmodel.QQ;
+import cn.jiguang.share.wechat.Wechat;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
 
@@ -35,6 +43,7 @@ public class NewsDetailActivity extends BaseActivity {
 
     private String url;
     private String htmlData;
+    private String title, content, imageUrl;
 
     @Override
     protected int getLayoutId() {
@@ -54,6 +63,9 @@ public class NewsDetailActivity extends BaseActivity {
         if(bundle != null){
             url = bundle.getString("url");
             htmlData = bundle.getString("htmlData");
+            title = bundle.getString("title");
+            content = bundle.getString("content");
+            imageUrl = bundle.getString("imageUrl");
         }
         if(!StringUtil.isEmpty(url)){
             wv_news_detail.loadUrl(url);
@@ -119,7 +131,7 @@ public class NewsDetailActivity extends BaseActivity {
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
             //标题
-            initTitleBar(mToolbar, title);
+            initTitleBar(mToolbar, title, true, 1);
         }
     }
 
@@ -133,6 +145,39 @@ public class NewsDetailActivity extends BaseActivity {
             wv_news_detail.loadUrl(url);
             return true;
         }
+    }
+
+    @Override
+    protected void onSubTitleClick() {
+        super.onSubTitleClick();
+        LogUtil.d("imageUrl:"+imageUrl);
+        //分享
+        NiceDialog.init()
+                .setLayoutId(R.layout.layout_dialog_share)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                        holder.setOnClickListener(R.id.ll_qq, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //QQ分享
+                                JShareUtil.share(QQ.Name,title,content,url,imageUrl,"");
+                            }
+                        });
+                        holder.setOnClickListener(R.id.ll_wechat, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //微信分享
+                                JShareUtil.share(Wechat.Name,title,content,url,imageUrl,"");
+                            }
+                        });
+                    }
+                })
+                .setShowBottom(true)
+                //.setMargin(30)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
+                .show(getSupportFragmentManager());     //显示dialog
     }
 
     @Override
