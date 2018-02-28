@@ -150,7 +150,6 @@ public class NewsDetailActivity extends BaseActivity {
     @Override
     protected void onSubTitleClick() {
         super.onSubTitleClick();
-        LogUtil.d("imageUrl:"+imageUrl);
         //分享
         NiceDialog.init()
                 .setLayoutId(R.layout.layout_dialog_share)     //设置dialog布局文件

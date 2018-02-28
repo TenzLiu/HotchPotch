@@ -151,12 +151,6 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
 
     //极光推送分享分享
-
-    /*compile 'cn.jiguang.sdk:jpush:3.1.1'  // 此处以JPush 3.1.1 版本为例。
-        compile 'cn.jiguang.sdk:jshare:1.5.0'  // 此处以 JShare 1.5.0 版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
-        compile 'cn.jiguang.sdk:jshare-qqmodel:1.5.0'  // 此处以 jshare-qqmodel 1.5.0  版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
-        compile 'cn.jiguang.sdk:jshare-wechatmodel:1.5.0'  // 此处以 jshare-wechatmodel 1.5.0  版本为例，具体版本请参考压缩包 libs 的 jar 包版本。
-        compile 'cn.jiguang.sdk:jcore:1.1.9'  // 此处以 JCore 1.1.9 版本为例，具体版本请参考压缩包 libs 的 jar 包版本。*/
     implementation files('libs/jcore-android-1.1.9.jar')
     implementation files('libs/jpush-android-3.1.1.jar')
     implementation files('libs/jshare-android-1.5.0.jar')
