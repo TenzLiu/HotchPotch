@@ -15,7 +15,6 @@
 <div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png"/></div>
 <div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png"/></div>
 <div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/></div>
-<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png"/></div>
-<div align=center><img width="600" height="300" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png"/></div>
+<div align=center><img width="600" height="300" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png"/></div>
 
 
