@@ -12,12 +12,10 @@
 下载apk体验：https://fir.im/c3dh  
 
 
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png)
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png)
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png)
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png)
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png)
-![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png)
-<img width="150" height="150" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/>
+<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png"/>
+<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png"/>
+<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png"/>
+<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/>
+<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png"/>
 
 
