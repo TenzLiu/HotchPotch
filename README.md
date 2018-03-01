@@ -17,5 +17,7 @@
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png)
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png)
 ![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png)
+![screenshots](https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png)
+<img width="150" height="150" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/>
 
 
