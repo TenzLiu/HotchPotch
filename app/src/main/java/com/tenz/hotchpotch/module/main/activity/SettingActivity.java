@@ -65,8 +65,6 @@ public class SettingActivity extends BaseActivity {
     private String apkUrl = "http://pro-app-qn.fir.im/46b10550719bd83157235014fec0144b8291e5d8.apk?" +
             "attname=hotchpotch.apk_1.6.2.apk&e=1519633005&token=LOvmia8oXF4xnLh0IdH05XMYpH6ENHNpARlmPc-T:bpNO0snU5oIkIFXithxANx3Rt5A=";
 
-    public String imageLogoPath;
-
     private AppUpdateService.MyBinder myBinder;
     private ServiceConnection connection = new ServiceConnection() {
 
@@ -121,17 +119,6 @@ public class SettingActivity extends BaseActivity {
         Intent intent = new Intent(this,AppUpdateService.class);
         bindService(intent,connection, Context.BIND_AUTO_CREATE);
 
-        //获取logo路径
-        /*new Thread(){
-            @Override
-            public void run() {
-                File imageFile = FileUtil.copyResurces(mContext, "logo.png", "logo.png", 0);
-                if(imageFile != null){
-                    imageLogoPath = imageFile.getAbsolutePath();
-                }
-                super.run();
-            }
-        }.start();*/
     }
 
     @OnClick({R.id.rl_modify_information,R.id.rl_modify_password,R.id.rl_version,R.id.btn_logout})

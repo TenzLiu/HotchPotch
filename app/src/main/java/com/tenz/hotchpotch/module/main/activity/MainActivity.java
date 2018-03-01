@@ -36,7 +36,9 @@ import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.module.news.fragment.NewsFragment;
 import com.tenz.hotchpotch.module.photo.fragment.PhotoFragment;
 import com.tenz.hotchpotch.module.video.fragment.VideoFragment;
+import com.tenz.hotchpotch.util.FileUtil;
 import com.tenz.hotchpotch.util.GlideUtil;
+import com.tenz.hotchpotch.util.JShareUtil;
 import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
@@ -53,6 +55,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import cn.jiguang.share.qqmodel.QQ;
+import cn.jiguang.share.wechat.Wechat;
 
 public class MainActivity extends BaseActivity implements HomeAdapter.Option {
 
@@ -79,6 +83,8 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     private Fragment videoFragment;
     private Fragment photoFragment;
     private int currentFragmentPosition;//当前fragment位置
+
+    public String imageLogoPath;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -165,7 +171,8 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
                         startActivity(ZXingActivity.class);
                         break;
                     case R.id.item_share:
-
+                        shareApp("HotchPotch","采用mvp+retrofix+rxjava框架的一款集结多功能的个人项目",
+                                "https://github.com/TenzLiu/HotchPotch",imageLogoPath);
                         break;
                     case R.id.item_about:
                         startActivity(AboutActivity.class);
@@ -255,6 +262,39 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
     }
 
     /**
+     * 分享App
+     */
+    private void shareApp(String title, String content,String url,String imagePath) {
+        //分享
+        NiceDialog.init()
+                .setLayoutId(R.layout.layout_dialog_share)     //设置dialog布局文件
+                .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+                    @Override
+                    public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
+                        holder.setOnClickListener(R.id.ll_qq, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //QQ分享
+                                JShareUtil.share(QQ.Name,title,content,url,"",imagePath);
+                            }
+                        });
+                        holder.setOnClickListener(R.id.ll_wechat, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                //微信分享
+                                JShareUtil.share(Wechat.Name,title,content,url,"",imagePath);
+                            }
+                        });
+                    }
+                })
+                .setShowBottom(true)
+                //.setMargin(30)     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
+                .show(getSupportFragmentManager());     //显示dialog
+    }
+
+    /**
      * 初始化fragment
      * @param savedInstanceState
      */
@@ -323,6 +363,17 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
         if(!StringUtil.isEmpty(SpUtil.getString(mContext,Constant.KEY_USER_HEAD,""))){
             GlideUtil.loadImage(mContext,new File(SpUtil.getString(mContext,Constant.KEY_USER_HEAD,"")),siv_head_icon);
         }
+        //获取logo路径
+        new Thread(){
+            @Override
+            public void run() {
+                File imageFile = FileUtil.copyResurces(mContext, "logo.png", "logo.png", 0);
+                if(imageFile != null){
+                    imageLogoPath = imageFile.getAbsolutePath();
+                }
+                super.run();
+            }
+        }.start();
     }
 
     /**
