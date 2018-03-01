@@ -11,11 +11,11 @@
 
 下载apk体验：https://fir.im/c3dh  
 
-
-<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png"/>
-<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png"/>
-<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png"/>
-<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/>
-<img width="200" height="400" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png"/>
+<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png"/></div>
+<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/home.png"/></div>
+<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/news.png"/></div>
+<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/photo.png"/></div>
+<div align=center><img width="300" height="600" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/video.png"/></div>
+<div align=center><img width="600" height="300" src="https://raw.githubusercontent.com/TenzLiu/HotchPotch/master/screenshots/finger_print_login.png"/></div>
 
 
