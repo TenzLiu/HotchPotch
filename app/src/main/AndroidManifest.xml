@@ -98,6 +98,7 @@
         <activity android:name=".module.main.activity.ZXingActivity"/>
         <activity android:name=".module.main.activity.ZXingScanActivity"/>
 
+        <service android:name=".service.ApplicationService"/>
         <service android:name=".service.AppUpdateService"/>
 
         <provider

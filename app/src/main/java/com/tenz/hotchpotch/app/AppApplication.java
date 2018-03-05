@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.tenz.hotchpotch.service.ApplicationService;
 import com.tenz.hotchpotch.util.LogUtil;
 
 import cn.jiguang.share.android.api.JShareInterface;
@@ -20,7 +21,6 @@ import cn.jpush.android.api.JPushInterface;
 
 public class AppApplication extends Application {
 
-    public static final boolean DEBUG = true;//是否debug模式
     private static AppApplication sApplication;
     protected static Context sContext;
     protected static Handler sHandler;
@@ -33,15 +33,7 @@ public class AppApplication extends Application {
         sContext = getApplicationContext();
         sHandler = new Handler();
         sMainThreadId = android.os.Process.myTid();
-        LogUtil.init(DEBUG);
-        //极光初始化
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
-        JShareInterface.setDebugMode(true);
-        PlatformConfig platformConfig = new PlatformConfig()
-                .setWechat("wxc40e16f3ba6ebabc", "dcad950cd0633a27e353477c4ec12e7a")
-                .setQQ("1106671627", "IGabM3RBSNz4bb4N");
-        JShareInterface.init(this,platformConfig);
+        ApplicationService.startService(this);
     }
 
     /**
