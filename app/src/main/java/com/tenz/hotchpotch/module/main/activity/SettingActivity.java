@@ -1,6 +1,7 @@
 package com.tenz.hotchpotch.module.main.activity;
 
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,9 @@ import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -33,6 +36,7 @@ import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.ConfirmDialog;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 import butterknife.BindView;

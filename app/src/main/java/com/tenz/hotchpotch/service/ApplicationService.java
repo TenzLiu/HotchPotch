@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.tenz.hotchpotch.app.CrashHandler;
 import com.tenz.hotchpotch.util.LogUtil;
 
 import cn.jiguang.share.android.api.JShareInterface;
@@ -68,12 +69,10 @@ public class ApplicationService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtil.d("onCreate..........");
     }
 
     @Override
     public void onDestroy() {
-        LogUtil.d("onDestroy..........");
         super.onDestroy();
     }
 }

@@ -33,6 +33,7 @@ public class AppApplication extends Application {
         sContext = getApplicationContext();
         sHandler = new Handler();
         sMainThreadId = android.os.Process.myTid();
+        CrashHandler.getInstance().init(sContext);
         ApplicationService.startService(this);
     }
 

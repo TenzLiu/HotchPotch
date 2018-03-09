@@ -148,20 +148,20 @@ public class AppManager {
      * @param isBackground 是否有后台运行
      */
     public void exitApp(Context context, boolean isBackground){
-        try{
-            finishAllActivity();
-            ActivityManager activityManager = (ActivityManager) context
-                    .getSystemService(Context.ACTIVITY_SERVICE);
-            activityManager.restartPackage(context.getPackageName());
-        }catch (Exception e){
-            LogUtil.e(e);
-        }finally {
-            // 注意，如果您有后台程序运行，请不要支持此句子
-            if (!isBackground) {
+        finishAllActivity();
+        // 注意，如果您有后台程序运行，请不要支持此句子
+        if (!isBackground) {
+            try{
+                ActivityManager activityManager = (ActivityManager) context
+                        .getSystemService(Context.ACTIVITY_SERVICE);
+                activityManager.killBackgroundProcesses(context.getPackageName());
                 System.exit(0);
+            }catch (Exception e){
+                LogUtil.e(e);
+            }finally {
+
             }
         }
-
     }
 
 }
