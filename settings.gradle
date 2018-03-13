@@ -1,1 +1,1 @@
-include ':app', ':takephoto_library', ':zxing', ':lib'
+include ':app', ':takephoto',':zxing'

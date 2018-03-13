@@ -4,9 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HotchPotch.iml" filepath="$PROJECT_DIR$/HotchPotch.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://E:\AndroidStudio3.0\Project\personal\HotchPotch\lib\lib.iml" filepath="E:\AndroidStudio3.0\Project\personal\HotchPotch\lib\lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/takephoto_library/takephoto_library.iml" filepath="$PROJECT_DIR$/takephoto_library/takephoto_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/takephoto/takephoto.iml" filepath="$PROJECT_DIR$/takephoto/takephoto.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxing/zxing.iml" filepath="$PROJECT_DIR$/zxing/zxing.iml" />
     </modules>
   </component>

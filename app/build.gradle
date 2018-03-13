@@ -141,7 +141,7 @@ dependencies {
     //compile 'com.shuyu:gsyVideoPlayer-ex_so:4.0.0-beat1'
 
     //拍照、图片选择
-    implementation project(':takephoto_library')
+    implementation project(':takephoto')
 
     //dialog(https://github.com/Othershe/NiceDialog)
     compile 'com.github.Othershe:NiceDialog:1.1.4'
