@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -211,7 +212,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
                                 boolean showHomeAsUp, boolean isShowRight, int rightType){
         this.isShowRight = isShowRight;
         this.rightType = rightType;
-        toolbar.setTitle(title);
+        toolbar.setTitle("");
+        TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setText(title);
         //将Toolbar显示到界面
         setSupportActionBar(toolbar);
         if(showHomeAsUp){
