@@ -213,6 +213,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
         this.isShowRight = isShowRight;
         this.rightType = rightType;
         toolbar.setTitle("");
+        //title居中
         TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setText(title);
         //将Toolbar显示到界面
