@@ -182,7 +182,16 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * @param title
      */
     protected void initTitleBar(Toolbar toolbar, String title){
-        initTitleBar(toolbar, title, true, false, 0);
+        initTitleBar(toolbar, title, true, -1, false, 0);
+    }
+
+    /**
+     * 设置toolbar
+     * @param toolbar
+     * @param title
+     */
+    protected void initTitleBar(Toolbar toolbar, String title, int bgColor){
+        initTitleBar(toolbar, title, true, bgColor, false, 0);
     }
 
     /**
@@ -191,7 +200,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * @param title
      */
     protected void initTitleBar(Toolbar toolbar, String title, boolean showHomeAsUp){
-        initTitleBar(toolbar, title, showHomeAsUp, false, 0);
+        initTitleBar(toolbar, title, showHomeAsUp, -1, false, 0);
     }
 
     /**
@@ -200,7 +209,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * @param title
      */
     protected void initTitleBar(Toolbar toolbar, String title, boolean isShowRight, int rightType){
-        initTitleBar(toolbar, title, true, isShowRight, rightType);
+        initTitleBar(toolbar, title, true, -1, isShowRight, rightType);
     }
 
     /**
@@ -208,11 +217,15 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
      * @param toolbar
      * @param title
      */
-    protected void initTitleBar(Toolbar toolbar, String title,
-                                boolean showHomeAsUp, boolean isShowRight, int rightType){
+    protected void initTitleBar(Toolbar toolbar, String title, boolean showHomeAsUp,
+                                int bgColor, boolean isShowRight, int rightType){
         this.isShowRight = isShowRight;
         this.rightType = rightType;
         toolbar.setTitle("");
+        //背景色
+        if(bgColor != -1){
+            toolbar.setBackgroundColor(bgColor);
+        }
         //title居中
         TextView toolbar_title = toolbar.findViewById(R.id.toolbar_title);
         toolbar_title.setText(title);

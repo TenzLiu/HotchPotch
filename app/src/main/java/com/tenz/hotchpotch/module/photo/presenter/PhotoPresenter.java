@@ -31,7 +31,7 @@ public class PhotoPresenter extends PhotoContract.PhotoPresenter {
         if(mIModel != null && mIView != null){
             if(isRefresh)
                 page = 0;
-            mIModel.getPhotos(page)
+                mIModel.getPhotos(page)
                     .compose(RxScheduler.<GetPhotos>rxSchedulerTransform())
                     .compose(mIView.<GetPhotos>bindToLife())
                     .subscribe(new Observer<GetPhotos>() {

@@ -25,6 +25,8 @@ import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.LoadingDialog;
+import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -37,7 +39,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  * Description: BaseFragment,并处理Fragment懒加载
  */
 
-public abstract class BaseLazyFragment extends Fragment implements IBaseView,
+public abstract class BaseLazyFragment extends RxFragment implements IBaseView,
         TakePhoto.TakeResultListener,InvokeListener {
 
     /**
@@ -196,7 +198,7 @@ public abstract class BaseLazyFragment extends Fragment implements IBaseView,
      * 子类可以复写此方法初始化子类数据
      */
     protected void initData() {
-        LogUtil.d("initData***********************");
+
     }
 
     @Override
@@ -240,6 +242,11 @@ public abstract class BaseLazyFragment extends Fragment implements IBaseView,
                 (INPUT_METHOD_SERVICE);
         boolean hideSoftInputFromWindow = mInputMethodManager.hideSoftInputFromWindow(mActivity
                 .getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
+    public <T> LifecycleTransformer<T> bindToLife() {
+        return this.<T>bindToLifecycle();
     }
 
     /**

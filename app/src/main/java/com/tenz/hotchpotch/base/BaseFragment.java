@@ -208,7 +208,6 @@ public abstract class BaseFragment extends RxFragment implements IBaseView,
                 .getCurrentFocus().getWindowToken(), 0);
     }
 
-
     @Override
     public <T> LifecycleTransformer<T> bindToLife() {
         return this.<T>bindToLifecycle();

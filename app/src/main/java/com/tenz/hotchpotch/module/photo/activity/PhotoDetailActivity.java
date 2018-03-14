@@ -59,7 +59,7 @@ public class PhotoDetailActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         StatusBarUtil.setTransparent(this);
-        initTitleBar(mToolbar,"");
+        initTitleBar(mToolbar,"",ResourceUtil.getColor(R.color.colorTransParent));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4以上
             int statusBarHeight = StatusBarUtil.getStatusBarHeight(mContext);
