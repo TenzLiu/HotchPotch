@@ -23,6 +23,8 @@ import com.tenz.hotchpotch.widget.popuwindow.CommonPopupWindow;
 import com.ttsea.jrxbus2.RxBus2;
 import com.ttsea.jrxbus2.Subscribe;
 
+import java.lang.ref.WeakReference;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bingoogolapple.qrcode.core.BGAQRCodeUtil;
@@ -153,23 +155,8 @@ public class ZXingActivity extends BaseActivity {
                     showToast("请输入要生成二维码的内容");
                    return;
                 }
-                if(createQrCodeType == 1){
-                    //生成中文二维码
-                    createChineseQRCode(codeResuylt);
-                    tv_result.setText(codeResuylt);
-                }else if(createQrCodeType == 2){
-                    //生成中文带logo二维码
-                    createChineseQRCodeWithLogo(codeResuylt);
-                    tv_result.setText(codeResuylt);
-                }else if(createQrCodeType == 3){
-                    //生成英文二维码
-                    createEnglishQRCode(codeResuylt);
-                    tv_result.setText(codeResuylt);
-                }else{
-                    //生成英文带logo二维码
-                    createEnglishQRCodeWithLogo(codeResuylt);
-                    tv_result.setText(codeResuylt);
-                }
+                new CreateQRCodeAsyncTask(ZXingActivity.this,codeResuylt,createQrCodeType).execute();
+                tv_result.setText(codeResuylt);
                 break;
             case R.id.btn_scan:
                 //扫描
@@ -185,123 +172,68 @@ public class ZXingActivity extends BaseActivity {
     @Subscribe(code = Constant.CODE_QRCODE_RESULT)
     public void onCodeEvent(String msg){
         et_content.setText("");
-        createChineseQRCode(msg);
+        new CreateQRCodeAsyncTask(ZXingActivity.this,msg,createQrCodeType).execute();
         tv_result.setText(msg);
     }
 
     /**
-     * 生成中文二维码
+     * 生成二维码异步操作
      */
-    private void createChineseQRCode(final String content) {
-        /*
-        这里为了偷懒，就没有处理匿名 AsyncTask 内部类导致 Activity 泄漏的问题
-        请开发在使用时自行处理匿名内部类导致Activity内存泄漏的问题，处理方式可参考
-         https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md
-         */
-        new AsyncTask<Void, Void, Bitmap>() {
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                return QRCodeEncoder.syncEncodeQRCode(content,
-                        BGAQRCodeUtil.dp2px(ZXingActivity.this, 160));
-            }
+    private static class CreateQRCodeAsyncTask extends AsyncTask<Void, Void, Bitmap>{
 
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
-                    iv_qr_code.setImageBitmap(bitmap);
-                } else {
-                    ToastUtil.showToast("生成中文二维码失败");
+        private WeakReference<ZXingActivity> mZXingActivityWeakReference;
+        private String content;
+        private int createQrCodeType;
+
+        public CreateQRCodeAsyncTask(ZXingActivity zXingActivity, String content, int createQrCodeType) {
+            mZXingActivityWeakReference = new WeakReference<>(zXingActivity);
+            this.content = content;
+            this.createQrCodeType = createQrCodeType;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            ZXingActivity zXingActivity = mZXingActivityWeakReference.get();
+            if(zXingActivity != null){
+                if(createQrCodeType == 1){
+                    //生成中文二维码
+                    return QRCodeEncoder.syncEncodeQRCode(content,
+                            BGAQRCodeUtil.dp2px(zXingActivity.mContext, 160));
+                }else if(createQrCodeType == 2){
+                    //生成中文带logo二维码
+                    Bitmap logoBitmap = BitmapFactory.decodeResource(zXingActivity.mContext.getResources(),
+                            R.mipmap.ic_launcher);
+                    return QRCodeEncoder.syncEncodeQRCode(content,
+                            BGAQRCodeUtil.dp2px(zXingActivity.mContext, 160),
+                            Color.parseColor("#000000"), logoBitmap);
+                }else if(createQrCodeType == 3){
+                    //生成英文二维码
+                    return QRCodeEncoder.syncEncodeQRCode(content,
+                            BGAQRCodeUtil.dp2px(zXingActivity.mContext, 160),
+                            Color.parseColor("#000000"));
+                }else{
+                    //生成英文带logo二维码
+                    Bitmap logoBitmap = BitmapFactory.decodeResource(zXingActivity.mContext.getResources(),
+                            R.mipmap.ic_launcher);
+                    return QRCodeEncoder.syncEncodeQRCode(content,
+                            BGAQRCodeUtil.dp2px(zXingActivity.mContext, 160),
+                            Color.BLACK, Color.WHITE, logoBitmap);
                 }
             }
-        }.execute();
-    }
+            return null;
+        }
 
-    /**
-     * 生成英文二维码
-     */
-    private void createEnglishQRCode(final String content) {
-        /*
-        这里为了偷懒，就没有处理匿名 AsyncTask 内部类导致 Activity 泄漏的问题
-        请开发在使用时自行处理匿名内部类导致Activity内存泄漏的问题，处理方式可参考
-        https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md
-         */
-        new AsyncTask<Void, Void, Bitmap>() {
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                return QRCodeEncoder.syncEncodeQRCode(content,
-                        BGAQRCodeUtil.dp2px(ZXingActivity.this, 160),
-                        Color.parseColor("#000000"));
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (bitmap != null) {
+                ZXingActivity zXingActivity = mZXingActivityWeakReference.get();
+                if(zXingActivity != null)
+                    zXingActivity.iv_qr_code.setImageBitmap(bitmap);
+            } else {
+                ToastUtil.showToast("生成二维码失败");
             }
+        }
 
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
-                    iv_qr_code.setImageBitmap(bitmap);
-                } else {
-                    ToastUtil.showToast("生成英文二维码失败");
-                }
-            }
-        }.execute();
-    }
-
-    /**
-     * 生成中文带logo二维码
-     */
-    private void createChineseQRCodeWithLogo(final String content) {
-        /*
-        这里为了偷懒，就没有处理匿名 AsyncTask 内部类导致 Activity 泄漏的问题
-        请开发在使用时自行处理匿名内部类导致Activity内存泄漏的问题，处理方式可参考
-        https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md
-         */
-        new AsyncTask<Void, Void, Bitmap>() {
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                Bitmap logoBitmap = BitmapFactory.decodeResource(ZXingActivity.this.getResources(),
-                        R.mipmap.ic_launcher);
-                return QRCodeEncoder.syncEncodeQRCode(content,
-                        BGAQRCodeUtil.dp2px(ZXingActivity.this, 160),
-                        Color.parseColor("#000000"), logoBitmap);
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
-                    iv_qr_code.setImageBitmap(bitmap);
-                } else {
-                    ToastUtil.showToast("生成带logo的中文二维码失败");
-                }
-            }
-        }.execute();
-    }
-
-    /**
-     * 生成英文带logo二维码
-     */
-    private void createEnglishQRCodeWithLogo(final String content) {
-        /*
-        这里为了偷懒，就没有处理匿名 AsyncTask 内部类导致 Activity 泄漏的问题
-        请开发在使用时自行处理匿名内部类导致Activity内存泄漏的问题，处理方式可参考
-        https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md
-         */
-        new AsyncTask<Void, Void, Bitmap>() {
-            @Override
-            protected Bitmap doInBackground(Void... params) {
-                Bitmap logoBitmap = BitmapFactory.decodeResource(ZXingActivity.this.getResources(),
-                        R.mipmap.ic_launcher);
-                return QRCodeEncoder.syncEncodeQRCode(content,
-                        BGAQRCodeUtil.dp2px(ZXingActivity.this, 160),
-                        Color.BLACK, Color.WHITE, logoBitmap);
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
-                    iv_qr_code.setImageBitmap(bitmap);
-                } else {
-                    ToastUtil.showToast("生成带logo的英文二维码失败");
-                }
-            }
-        }.execute();
     }
 
     @Override
@@ -309,4 +241,5 @@ public class ZXingActivity extends BaseActivity {
         super.onDestroy();
         RxBus2.getInstance().unRegister(this);
     }
+
 }

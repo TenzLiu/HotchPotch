@@ -259,10 +259,9 @@
 -keep class com.google.protobuf.** {*;}
 
 #JShare Android SDK 的混淆
--dontwarn cn.jiguang.**
--keep class cn.jiguang.** { *; }
 -dontwarn cn.jpush.**
 -keep class cn.jpush.** { *; }
--keep public class com.sina.** {
-    *;
-}
+-keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
+-dontwarn cn.jiguang.**
+
+

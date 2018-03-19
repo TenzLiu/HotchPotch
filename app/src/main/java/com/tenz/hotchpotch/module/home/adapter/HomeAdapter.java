@@ -164,7 +164,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtil.showToast(mHomeDataList.get(position).getModuleList().get(index).getName());
+                    mItemClickListener.onItemClick(position,index);
                 }
             });
             moduleViewHolder.ll_module.addView(view);
@@ -200,7 +200,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         newsContentViewHolder.cv_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItemClickListener.onItemClick(position);
+                mItemClickListener.onItemClick(position,-1);
             }
         });
     }
@@ -232,7 +232,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         videoContentViewHolder.ll_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItemClickListener.onItemClick(position);
+                mItemClickListener.onItemClick(position,-1);
             }
         });
     }
@@ -263,7 +263,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         photoContentViewHolder.cv_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItemClickListener.onItemClick(position);
+                mItemClickListener.onItemClick(position,-1);
             }
         });
     }
@@ -401,7 +401,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * 接口
      */
     public interface ItemClickListener{
-        void onItemClick(int position);
+        void onItemClick(int parentPosition, int childPosition);
     }
 
     /**

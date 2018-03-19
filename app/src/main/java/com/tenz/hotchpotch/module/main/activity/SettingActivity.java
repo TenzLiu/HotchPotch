@@ -1,17 +1,12 @@
 package com.tenz.hotchpotch.module.main.activity;
 
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -28,24 +23,13 @@ import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.module.login.activity.LoginActivity;
 import com.tenz.hotchpotch.service.AppUpdateService;
 import com.tenz.hotchpotch.util.AppUtil;
-import com.tenz.hotchpotch.util.FileUtil;
-import com.tenz.hotchpotch.util.LogUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
 import com.tenz.hotchpotch.widget.dialog.ConfirmDialog;
 
-import java.io.File;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.jiguang.share.android.api.JShareInterface;
-import cn.jiguang.share.android.api.PlatActionListener;
-import cn.jiguang.share.android.api.Platform;
-import cn.jiguang.share.android.api.ShareParams;
-import cn.jiguang.share.qqmodel.QQ;
 
 /**
  * Author: TenzLiu
@@ -122,7 +106,6 @@ public class SettingActivity extends BaseActivity {
         // 绑定Service
         Intent intent = new Intent(this,AppUpdateService.class);
         bindService(intent,connection, Context.BIND_AUTO_CREATE);
-
     }
 
     @OnClick({R.id.rl_modify_information,R.id.rl_modify_password,R.id.rl_version,R.id.btn_logout})

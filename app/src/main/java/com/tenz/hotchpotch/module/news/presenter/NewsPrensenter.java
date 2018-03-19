@@ -39,7 +39,7 @@ public class NewsPrensenter extends NewsContract.NewsPresenter {
         if(mIModel != null && mIView != null){
             if(isRefresh)
                 min_behot_time = System.currentTimeMillis();
-                mIModel.getNews(category,count,min_behot_time)
+            mIModel.getNews(category,count,min_behot_time)
                     .compose(RxScheduler.<GetNews>rxSchedulerTransform())
                     .compose(mIView.<GetNews>bindToLife())
                     .subscribe(new Observer<GetNews>() {

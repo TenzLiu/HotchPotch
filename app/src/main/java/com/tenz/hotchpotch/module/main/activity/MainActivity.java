@@ -181,7 +181,7 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
                         startActivity(SettingActivity.class);
                         break;
                 }
-                closeMenuDrawerLayout();
+                //closeMenuDrawerLayout();
                 return true;
             }
         });

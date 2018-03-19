@@ -2,8 +2,10 @@ package com.tenz.hotchpotch.util;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.telephony.TelephonyManager;
@@ -199,6 +201,24 @@ public class AppUtil {
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken()
                 ,InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     *
+     * @param context
+     * @param phone
+     * @param immediate  true:直接拨打  false:拨号界面
+     */
+    public static void callPhone(Context context, String phone, boolean immediate){
+        Intent intent;
+        if(immediate){
+            intent = new Intent(Intent.ACTION_CALL);
+        }else{
+            intent = new Intent(Intent.ACTION_DIAL);
+        }
+        Uri data = Uri.parse("tel:"+phone);
+        intent.setData(data);
+        context.startActivity(intent);
     }
 
 }

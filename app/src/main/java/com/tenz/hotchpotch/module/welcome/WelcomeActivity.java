@@ -93,7 +93,7 @@ public class WelcomeActivity extends BaseActivity {
      */
     private void innitCountDown() {
         Observable.interval(0,1, TimeUnit.SECONDS)
-                .take(3)//3s自动结束
+                .take(2)//3s自动结束
                 .map(new Function<Long, Long>() {//转换
                     @Override
                     public Long apply(Long aLong) throws Exception {

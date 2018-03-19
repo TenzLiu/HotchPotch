@@ -5,11 +5,6 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.tenz.hotchpotch.service.ApplicationService;
-import com.tenz.hotchpotch.util.LogUtil;
-
-import cn.jiguang.share.android.api.JShareInterface;
-import cn.jiguang.share.android.api.PlatformConfig;
-import cn.jpush.android.api.JPushInterface;
 
 
 /**

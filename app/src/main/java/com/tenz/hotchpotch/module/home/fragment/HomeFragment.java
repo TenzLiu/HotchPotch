@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseFragment;
+import com.tenz.hotchpotch.module.home.activity.ContactsActivity;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.entity.GetBanner;
 import com.tenz.hotchpotch.module.home.entity.HomeData;
@@ -140,11 +141,15 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
      * 初始化模块数据
      */
     private void initModuleData() {
+        Module module1 = new Module();
+        module1.setLogo("");
+        module1.setName("通讯录");
+        mModuleList.add(module1);
         for(int i=0; i<8; i++){
-            Module module = new Module();
-            module.setLogo("");
-            module.setName("模块"+i);
-            mModuleList.add(module);
+            Module modulei = new Module();
+            modulei.setLogo("");
+            modulei.setName("模块"+i);
+            mModuleList.add(modulei);
         }
     }
 
@@ -330,9 +335,9 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
     }
 
     @Override
-    public void onItemClick(int position) {
-        if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_NEWS_CONTENT){
-            GetNews.News news = mHomeDataList.get(position).getNews();
+    public void onItemClick(int parentPosition, int childPosition) {
+        if(mHomeDataList.get(parentPosition).getType() == HomeAdapter.VIEW_TYPE_NEWS_CONTENT){
+            GetNews.News news = mHomeDataList.get(parentPosition).getNews();
             Bundle bundle = new Bundle();
             bundle.putString("url",news.getUrl());
             bundle.putString("htmlData","");
@@ -340,13 +345,22 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
             bundle.putString("content",news.getTitle());
             bundle.putString("imageUrl",news.getUser_info()!=null?news.getUser_info().getAvatar_url():"");
             startActivity(NewsDetailActivity.class,bundle);
-        }else if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_VIDEO_CONTENT){
+        }else if(mHomeDataList.get(parentPosition).getType() == HomeAdapter.VIEW_TYPE_MODULE){
+            switch (childPosition){
+                case 0:
+                    startActivity(ContactsActivity.class);
+                    break;
+                default:
+                    showToast(mHomeDataList.get(parentPosition).getModuleList().get(childPosition).getName());
+                    break;
+            }
+        }else if(mHomeDataList.get(parentPosition).getType() == HomeAdapter.VIEW_TYPE_VIDEO_CONTENT){
             Bundle bundle = new Bundle();
-            bundle.putSerializable("video",mHomeDataList.get(position).getVideo());
+            bundle.putSerializable("video",mHomeDataList.get(parentPosition).getVideo());
             startActivity(VideoDetailActivity.class,bundle);
-        }else if(mHomeDataList.get(position).getType() == HomeAdapter.VIEW_TYPE_PHOTO_CONTENT){
+        }else if(mHomeDataList.get(parentPosition).getType() == HomeAdapter.VIEW_TYPE_PHOTO_CONTENT){
             Bundle bundle = new Bundle();
-            bundle.putString("pic_url",mHomeDataList.get(position).getPhoto().getUrl());
+            bundle.putString("pic_url",mHomeDataList.get(parentPosition).getPhoto().getUrl());
             startActivity(PhotoDetailActivity.class,bundle);
         }
     }
