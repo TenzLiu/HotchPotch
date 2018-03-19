@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tenz.hotchpotch.R;
+import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
 import com.tenz.hotchpotch.helper.CryptoObjectHelper;
 import com.tenz.hotchpotch.module.main.activity.MainActivity;
 import com.tenz.hotchpotch.rx.RxScheduler;
+import com.tenz.hotchpotch.util.JPushUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.ToastUtil;
@@ -118,7 +120,9 @@ public class LoginByFingerPrintActivity extends BaseActivity {
                             @Override
                             public void onComplete() {
                                 SpUtil.putBoolean(mContext, Constant.KEY_IS_LOGIN,true);
+                                new JPushUtil().setAlias("tenz");
                                 startActivity(MainActivity.class);
+                                AppManager.getInstance().finishAllActivityExcept(MainActivity.class);
                             }
                         });
             }
@@ -171,4 +175,5 @@ public class LoginByFingerPrintActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
 }

@@ -15,6 +15,7 @@ import com.tenz.hotchpotch.module.login.contract.LoginContract;
 import com.tenz.hotchpotch.module.login.model.LoginModel;
 import com.tenz.hotchpotch.module.login.presenter.LoginPresenter;
 import com.tenz.hotchpotch.module.main.activity.MainActivity;
+import com.tenz.hotchpotch.util.JPushUtil;
 import com.tenz.hotchpotch.util.SpUtil;
 import com.tenz.hotchpotch.util.StatusBarUtil;
 import com.tenz.hotchpotch.util.StringUtil;
@@ -89,6 +90,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter,LoginModel>
         showToast("登录成功");
         SpUtil.putBoolean(mContext, Constant.KEY_IS_LOGIN,true);
         startActivity(MainActivity.class);
+        new JPushUtil().setAlias("tenz");
         AppManager.getInstance().finishActivity();
     }
 
