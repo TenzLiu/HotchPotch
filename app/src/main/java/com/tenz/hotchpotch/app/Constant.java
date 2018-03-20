@@ -21,8 +21,10 @@ public class Constant {
 
     public static final String SAVE_PATH_NAME = "hotchpotch";
 
-    public static final int CODE_CODEOVERDUE = 101010;
-
     public static final String KEY_USER_HEAD = "user_head";
-    public static final int CODE_QRCODE_RESULT = 101011;
+    public static final String KEY_PUSH_OPEN_CLOSE = "push_open_close";
+
+    public static final int CODE_CODEOVERDUE = 101010;//token过期
+    public static final int CODE_QRCODE_RESULT = 101011;//二维码扫描
+    public static final int CODE_JPUSH_RECEIVER = 101012;//极光推送
 }

@@ -30,19 +30,11 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="revuProjectSettings">
+    <option name="reviewFiles">
+      <list>
+        <option value="review.xml" />
+      </list>
+    </option>
   </component>
 </project>

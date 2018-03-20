@@ -10,12 +10,14 @@ import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.NiceDialog;
 import com.othershe.nicedialog.ViewConvertListener;
 import com.othershe.nicedialog.ViewHolder;
+import com.suke.widget.SwitchButton;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
@@ -30,6 +32,7 @@ import com.tenz.hotchpotch.widget.dialog.ConfirmDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Author: TenzLiu
@@ -43,6 +46,8 @@ public class SettingActivity extends BaseActivity {
     Toolbar mToolbar;
     @BindView(R.id.tv_version_name)
     TextView tv_version_name;
+    @BindView(R.id.sb_push)
+    SwitchButton sb_push;
 
     private BaseNiceDialog appUpdateProgressDialog;
     private ProgressBar pb_update;
@@ -95,6 +100,23 @@ public class SettingActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         initTitleBar(mToolbar, ResourceUtil.getString(R.string.setting));
+        sb_push.setChecked(SpUtil.getBoolean(mContext,Constant.KEY_PUSH_OPEN_CLOSE,false));
+        sb_push.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                if(isChecked){
+                    //开启推送
+                    SpUtil.putBoolean(mContext,Constant.KEY_PUSH_OPEN_CLOSE,true);
+                    JPushInterface.resumePush(AppUtil.getContext());
+                    showToast("推送已开启");
+                }else{
+                    //关闭推送
+                    SpUtil.putBoolean(mContext,Constant.KEY_PUSH_OPEN_CLOSE,false);
+                    JPushInterface.stopPush(AppUtil.getContext());
+                    showToast("推送已关闭");
+                }
+            }
+        });
         tv_version_name.setText(AppUtil.getAppVersionName(mContext));
     }
 

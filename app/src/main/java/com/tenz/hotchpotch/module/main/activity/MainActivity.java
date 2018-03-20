@@ -28,6 +28,7 @@ import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.app.AppManager;
 import com.tenz.hotchpotch.app.Constant;
 import com.tenz.hotchpotch.base.BaseActivity;
+import com.tenz.hotchpotch.event.JPushEvent;
 import com.tenz.hotchpotch.helper.BottomNavigationViewHelperHelp;
 import com.tenz.hotchpotch.helper.TakePhotoHelper;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
@@ -443,6 +444,15 @@ public class MainActivity extends BaseActivity implements HomeAdapter.Option {
         ToastUtil.showToast(msg);
         startActivity(LoginActivity.class);
         AppManager.getInstance().finishAllActivityExcept(LoginActivity.class);
+    }
+
+    /**
+     * RxBus 极光接收通知
+     * @param jPushEvent
+     */
+    @Subscribe(code = Constant.CODE_JPUSH_RECEIVER)
+    public void onJPushEvent(JPushEvent jPushEvent){
+        LogUtil.d("jPushEvent:-----------------------"+jPushEvent.toString());
     }
 
     @Override

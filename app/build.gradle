@@ -161,4 +161,7 @@ dependencies {
     implementation files('libs/jshare-android-1.5.0.jar')
     implementation files('libs/jshare-qq-android-1.5.0.jar')
     implementation files('libs/jshare-wechat-android-1.5.0.jar')
+
+    //switchButton(https://github.com/zcweng/SwitchButton)
+    compile 'com.github.zcweng:switch-button:0.0.3@aar'
 }
