@@ -72,6 +72,9 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { url "https://maven.google.com" }
         maven {url "http://developer.huawei.com/repo/"}
+        maven {
+            url "http://maven.aliyun.com/nexus/content/repositories/releases"
+        }
     }
 }
 
@@ -164,4 +167,7 @@ dependencies {
 
     //switchButton(https://github.com/zcweng/SwitchButton)
     compile 'com.github.zcweng:switch-button:0.0.3@aar'
+
+    //阿里Sophix热修复（https://help.aliyun.com/document_detail/53240.html?spm=a2c4g.11186623.2.3.ozyQl2）
+    compile 'com.aliyun.ams:alicloud-android-hotfix:3.2.0'
 }

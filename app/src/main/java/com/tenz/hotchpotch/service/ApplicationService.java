@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
-import com.tenz.hotchpotch.app.CrashHandler;
 import com.tenz.hotchpotch.util.LogUtil;
 
 import cn.jiguang.share.android.api.JShareInterface;
@@ -52,18 +51,31 @@ public class ApplicationService extends IntentService {
         if(intent != null){
             String intentAction = intent.getAction();
             if(ACTION_INIT_WHEN_APP_CREATE.equals(intentAction)){
-                //将application好事操作放在此处
+                //将application耗时操作放在此处
                 LogUtil.init(DEBUG);
-                //极光初始化
-                JPushInterface.setDebugMode(true);
-                JPushInterface.init(this);
-                JShareInterface.setDebugMode(true);
-                PlatformConfig platformConfig = new PlatformConfig()
-                        .setWechat("wxc40e16f3ba6ebabc", "dcad950cd0633a27e353477c4ec12e7a")
-                        .setQQ("1106671627", "IGabM3RBSNz4bb4N");
-                JShareInterface.init(this,platformConfig);
+                initJPush();
+                initJSHare();
             }
         }
+    }
+
+    /**
+     * 初始化极光推送
+     */
+    private void initJPush(){
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+    }
+
+    /**
+     * 初始化极光分享
+     */
+    private void initJSHare(){
+        JShareInterface.setDebugMode(true);
+        PlatformConfig platformConfig = new PlatformConfig()
+                .setWechat("wxc40e16f3ba6ebabc", "dcad950cd0633a27e353477c4ec12e7a")
+                .setQQ("1106671627", "IGabM3RBSNz4bb4N");
+        JShareInterface.init(this,platformConfig);
     }
 
     @Override

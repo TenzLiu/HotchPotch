@@ -243,9 +243,6 @@
 }
 
 #JPush Android SDK 的混淆
--dontoptimize
--dontpreverify
-
 -dontwarn cn.jpush.**
 -keep class cn.jpush.** { *; }
 -keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
@@ -263,5 +260,20 @@
 -keep class cn.jpush.** { *; }
 -keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
 -dontwarn cn.jiguang.**
+
+#阿里云热修复
+#基线包使用，生成mapping.txt
+-printmapping mapping.txt
+#生成的mapping.txt在app/buidl/outputs/mapping/release路径下，移动到/app路径下
+#修复后的项目使用，保证混淆结果一致
+#-applymapping mapping.txt
+#hotfix
+-keep class com.taobao.sophix.**{*;}
+-keep class com.ta.utdid2.device.**{*;}
+-keepclassmembers class com.tenz.hotchpotch.app.AppApplication{
+  public <init>();
+}
+# 如果不使用android.support.annotation.Keep则需加上此行
+# -keep class com.my.pkg.SophixStubApplication$RealApplicationStub
 
 
