@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <Button
+        android:id="@+id/btn_share_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="文本"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:background="@drawable/shape_bg_blue_radius"/>
+    <Button
+        android:id="@+id/btn_share_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="圖片"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:background="@drawable/shape_bg_blue_radius"/>
+    <Button
+        android:id="@+id/btn_share_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="多圖片"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:background="@drawable/shape_bg_blue_radius"/>
+
+</LinearLayout>

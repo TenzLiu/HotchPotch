@@ -2,7 +2,9 @@ package com.tenz.hotchpotch.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
+import android.os.StrictMode;
 
 import com.tenz.hotchpotch.service.ApplicationService;
 
@@ -24,6 +26,11 @@ public class AppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //解决android N（>=24）系统以上分享 路径为file://时的 android.os.FileUriExposedException异常
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
         sApplication = this;
         sContext = getApplicationContext();
         sHandler = new Handler();

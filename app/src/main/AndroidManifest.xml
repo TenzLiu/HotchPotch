@@ -100,6 +100,10 @@
         <activity android:name=".module.main.activity.ZXingActivity"/>
         <activity android:name=".module.main.activity.ZXingScanActivity"/>
         <activity android:name=".module.home.activity.ContactsActivity"/>
+        <activity android:name=".module.home.activity.SystemShareActivity"/>
+        <activity android:name=".module.home.activity.JSWebViewActivity"/>
+        <activity android:name=".module.home.activity.ScrollViewToolbarTransitionActivity" />
+        <activity android:name=".module.home.activity.PullZoomViewActivity" />
 
         <service android:name=".service.ApplicationService"/>
         <service android:name=".service.AppUpdateService"/>

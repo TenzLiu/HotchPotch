@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>TenzLiu</title>
+
+    <!--JS代码-->
+    <script>
+       function callJS(){
+          alert("Android调用了JS的callJS方法");
+       }
+
+       function callAndroid(){
+            test.callAndroid("js调用了android中的callAndroid方法");
+         }
+    </script>
+
+</head>
+
+<body>
+
+    <!--点击按钮则调用callAndroid函数-->
+    <button type="button" id="button1" onclick="callAndroid()">webview调用android的callAndroid方法</button>
+
+</body>
+
+</html>

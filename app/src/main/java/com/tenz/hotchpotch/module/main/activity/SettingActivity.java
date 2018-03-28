@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.othershe.nicedialog.BaseNiceDialog;

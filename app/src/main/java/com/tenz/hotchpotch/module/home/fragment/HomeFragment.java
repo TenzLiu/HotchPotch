@@ -9,6 +9,10 @@ import android.view.View;
 import com.tenz.hotchpotch.R;
 import com.tenz.hotchpotch.base.BaseFragment;
 import com.tenz.hotchpotch.module.home.activity.ContactsActivity;
+import com.tenz.hotchpotch.module.home.activity.PullZoomViewActivity;
+import com.tenz.hotchpotch.module.home.activity.ScrollViewToolbarTransitionActivity;
+import com.tenz.hotchpotch.module.home.activity.SystemShareActivity;
+import com.tenz.hotchpotch.module.home.activity.JSWebViewActivity;
 import com.tenz.hotchpotch.module.home.adapter.HomeAdapter;
 import com.tenz.hotchpotch.module.home.entity.GetBanner;
 import com.tenz.hotchpotch.module.home.entity.HomeData;
@@ -19,9 +23,7 @@ import com.tenz.hotchpotch.module.photo.activity.PhotoDetailActivity;
 import com.tenz.hotchpotch.module.photo.entity.GetPhotos;
 import com.tenz.hotchpotch.module.video.activity.VideoDetailActivity;
 import com.tenz.hotchpotch.module.video.entity.GetVideos;
-import com.tenz.hotchpotch.util.JsonUtil;
 import com.tenz.hotchpotch.util.ResourceUtil;
-import com.tenz.hotchpotch.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,10 +143,11 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
      * 初始化模块数据
      */
     private void initModuleData() {
-        Module module1 = new Module();
-        module1.setLogo("");
-        module1.setName("通讯录");
-        mModuleList.add(module1);
+        mModuleList.add(new Module(0,"","通讯录"));
+        mModuleList.add(new Module(1,"","原生分享"));
+        mModuleList.add(new Module(2,"","jswebview"));
+        mModuleList.add(new Module(3,"","toolbar渐变"));
+        mModuleList.add(new Module(4,"","PullZoomView"));
         for(int i=0; i<8; i++){
             Module modulei = new Module();
             modulei.setLogo("");
@@ -349,6 +352,17 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
             switch (childPosition){
                 case 0:
                     startActivity(ContactsActivity.class);
+                    break;
+                case 1:
+                    startActivity(SystemShareActivity.class);
+                    break;
+                case 2:
+                    startActivity(JSWebViewActivity.class);
+                case 3:
+                    startActivity(ScrollViewToolbarTransitionActivity.class);
+                    break;
+                case 4:
+                    startActivity(PullZoomViewActivity.class);
                     break;
                 default:
                     showToast(mHomeDataList.get(parentPosition).getModuleList().get(childPosition).getName());

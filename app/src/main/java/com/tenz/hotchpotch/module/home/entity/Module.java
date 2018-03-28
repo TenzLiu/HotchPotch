@@ -12,6 +12,15 @@ public class Module {
     private String logo;
     private String name;
 
+    public Module() {
+    }
+
+    public Module(int id, String logo, String name) {
+        this.id = id;
+        this.logo = logo;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

@@ -125,11 +125,8 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
 
     // Glide(takephoto已有引用)
-
     //    compile 'com.github.bumptech.glide:glide:4.3.1'
-
     //    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
-
     //    compile "com.github.bumptech.glide:okhttp3-integration:4.3.1"
 
     //badgeview未读红点
@@ -170,4 +167,9 @@ dependencies {
 
     //阿里Sophix热修复（https://help.aliyun.com/document_detail/53240.html?spm=a2c4g.11186623.2.3.ozyQl2）
     compile 'com.aliyun.ams:alicloud-android-hotfix:3.2.0'
+
+    //下拉头部放大的布局效果(https://github.com/jeasonlzy/PullZoomView)
+    compile 'com.lzy.widget:view-core:0.2.2'
+
+
 }

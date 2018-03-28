@@ -30,11 +30,4 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-  <component name="revuProjectSettings">
-    <option name="reviewFiles">
-      <list>
-        <option value="review.xml" />
-      </list>
-    </option>
-  </component>
 </project>

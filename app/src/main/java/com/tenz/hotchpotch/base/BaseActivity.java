@@ -238,10 +238,17 @@ public abstract class BaseActivity extends RxAppCompatActivity implements IBaseV
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    toolBarBack();
                 }
             });
         }
+    }
+
+    /**
+     * toolbar返回事件
+     */
+    public void toolBarBack(){
+        finish();
     }
 
     @Override
