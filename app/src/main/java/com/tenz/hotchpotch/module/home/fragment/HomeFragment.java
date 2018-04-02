@@ -358,6 +358,7 @@ public class HomeFragment extends BaseFragment implements HomeAdapter.ItemClickL
                     break;
                 case 2:
                     startActivity(JSWebViewActivity.class);
+                    break;
                 case 3:
                     startActivity(ScrollViewToolbarTransitionActivity.class);
                     break;
