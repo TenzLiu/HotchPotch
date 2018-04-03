@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\assets"/><source path="E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\release\assets"/></dataSet></merger>

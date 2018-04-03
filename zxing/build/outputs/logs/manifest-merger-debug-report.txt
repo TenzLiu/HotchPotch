@@ -1,0 +1,23 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml:1:1-53
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml:1:1-53
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml:1:1-53
+	package
+		ADDED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml:1:11-51
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+uses-sdk
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudio3.0\Project\personal\HotchPotch\zxing\src\main\AndroidManifest.xml

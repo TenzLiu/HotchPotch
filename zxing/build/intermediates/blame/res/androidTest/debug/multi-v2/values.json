@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\AndroidStudio3.0\\Project\\personal\\HotchPotch\\zxing\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\bga-qrcode-core-1.2.0.aar\\d3a17b9a18dadbb20076679992343651\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "1942",
+                        "endColumns": "53",
+                        "endOffsets": "1991"
+                    }
+                }
+            ]
+        }
+    ]
+}
